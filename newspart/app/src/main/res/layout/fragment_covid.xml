@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.dashboard.DashboardFragment">
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/text_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,43 +33,33 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button_home_hotsopt"
+                android:id="@+id/button_covid_news"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
-                android:text="时事热点"
+                android:text="最新消息"
                 android:textColor="#03A9F4" />
 
             <Button
-                android:id="@+id/button_home_covidnews"
+                android:id="@+id/button_covid_picture"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
-                android:text="聚焦疫情"
+                android:text="新冠图谱"
                 android:textColor="#03A9F4" />
 
             <Button
-                android:id="@+id/button_home_savednews"
+                android:id="@+id/button_covid_scientist"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#FFFFFF"
-                android:text="已存新闻"
-                android:textColor="#03A9F4" />
-
-            <Button
-                android:id="@+id/button_home_history"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="浏览历史"
+                android:text="知疫学者"
                 android:textColor="#03A9F4" />
         </LinearLayout>
     </LinearLayout>
