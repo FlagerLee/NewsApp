@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,51 +13,42 @@
         tools:layout_editor_absoluteX="278dp"
         tools:layout_editor_absoluteY="263dp">
 
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content" >
 
-            <Button
-                android:id="@+id/button_home_hotsopt"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_hotspot"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="时事热点"
-                android:textColor="#03A9F4" />
+                android:layout_height="match_parent"
+                android:text="时事热点" />
 
-            <Button
-                android:id="@+id/button_home_covidnews"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_saved"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="聚焦疫情"
-                android:textColor="#03A9F4" />
+                android:layout_height="match_parent"
+                android:text="已存新闻" />
 
-            <Button
-                android:id="@+id/button_home_savednews"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_history"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="已存新闻"
-                android:textColor="#03A9F4" />
+                android:layout_height="match_parent"
+                android:text="浏览历史" />
+        </com.google.android.material.tabs.TabLayout>
 
-            <Button
-                android:id="@+id/button_home_history"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
-                android:text="浏览历史"
-                android:textColor="#03A9F4" />
-        </LinearLayout>
+                android:text="TextView" />
+        </androidx.viewpager.widget.ViewPager>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
