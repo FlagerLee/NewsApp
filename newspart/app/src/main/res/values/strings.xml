@@ -3,4 +3,7 @@
     <string name="title_home">新闻主页</string>
     <string name="title_dashboard">疫情相关</string>
     <string name="title_notifications">个人中心</string>
+    <string name="home_table_hotspot">时事热点</string>
+    <string name="home_table_saved">已存新闻</string>
+    <string name="home_table_history">浏览历史</string>
 </resources>
