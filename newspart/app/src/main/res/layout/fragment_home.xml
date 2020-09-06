@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="278dp"
+        tools:layout_editor_absoluteY="263dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_hotspot"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="时事热点" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_saved"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="已存新闻" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabitem_history"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="浏览历史" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </androidx.viewpager.widget.ViewPager>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
