@@ -29,7 +29,7 @@ public class SavedFragment extends Fragment {
         RecyclerView recyclerView=root.findViewById(R.id.recyclerview_saved);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        newsadapter adapter=new newsadapter(news);
+        newsadapter adapter=new newsadapter(news,this.getContext());
         recyclerView.setAdapter(adapter);
         return root;
     }
