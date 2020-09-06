@@ -38,7 +38,6 @@ public class HotspotFragment extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
                 if((dy>0&&!recyclerView.canScrollVertically(1))||(dy<0&&!recyclerView.canScrollVertically(-1)))
                     HomeFragment.showprogressbar();
-
             }
         });
         return root;
