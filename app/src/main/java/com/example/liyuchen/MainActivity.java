@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     static private String CurrentTopNewsID = null;
     static private String CurrentFilter = null; //should be news or paper
 
-    private void refresh() {
+    public void refresh() {
         //called when users trying to refresh
         //刷新
 
