@@ -13,6 +13,12 @@
         tools:layout_editor_absoluteX="278dp"
         tools:layout_editor_absoluteY="263dp">
 
+        <SearchView
+            android:id="@+id/home_searchview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout_home"
             android:layout_width="match_parent"
@@ -37,16 +43,17 @@
                 android:text="浏览历史" />
         </com.google.android.material.tabs.TabLayout>
 
+        <ProgressBar
+            android:id="@+id/progressbar_up"
+            style="@android:style/Widget.DeviceDefault.ProgressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager_home"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
         </androidx.viewpager.widget.ViewPager>
 
     </LinearLayout>

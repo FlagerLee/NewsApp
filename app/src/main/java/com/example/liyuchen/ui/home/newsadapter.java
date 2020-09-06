@@ -1,5 +1,6 @@
 package com.example.liyuchen.ui.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
             time=view.findViewById(R.id.newslayout_time);
             linearLayout=view.findViewById(R.id.newslayout_all);
             linearLayout.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(context,newsActivity.class);
@@ -44,6 +46,7 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
                     intent.putExtra("author",author.getText());
                     intent.putExtra("time",time.getText());
                     intent.putExtra("content",content);
+                    title.setTextColor(R.color.black);
                     context.startActivity(intent);
                 }
             });
@@ -69,12 +72,17 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
         return holder;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull newsadapter.ViewHolder holder, int position) {
         newslayout  newlayout=news.get(position);
         holder.title.setText(newlayout.getTitle());
         holder.author.setText(newlayout.getAuthor());
         holder.time.setText(newlayout.getTime());
+        if(newlayout.isread())
+            holder.title.setTextColor(R.color.black);
+        else
+            holder.title.setTextColor(R.color.yellow);
         holder.content=newlayout.getContent();
         holder.context=context;
     }
