@@ -39,7 +39,7 @@ public class HotspotFragment extends Fragment {
         news=new ArrayList<>();
         for(int i=0;i<100;i++)
         {
-            newslayout apnews=new newslayout("title "+i,"author "+i,"time "+i,"content "+i);
+            newslayout apnews=new newslayout("hotspot title "+i,"author "+i,"time "+i,"content "+i);
             news.add(apnews);
         }
     }
