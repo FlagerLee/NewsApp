@@ -1,4 +1,4 @@
-package com.example.newspart.ui.notifications;
+package com.example.liyuchen.ui.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

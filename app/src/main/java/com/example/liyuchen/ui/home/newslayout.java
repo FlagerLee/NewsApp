@@ -1,4 +1,4 @@
-package com.example.newspart.ui.home;
+package com.example.liyuchen.ui.home;
 
 public class newslayout {
 

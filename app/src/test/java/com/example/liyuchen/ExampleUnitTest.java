@@ -1,4 +1,4 @@
-package com.example.newspart;
+package com.example.liyuchen;
 
 import org.junit.Test;
 

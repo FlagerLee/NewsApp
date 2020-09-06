@@ -1,4 +1,4 @@
-package com.example.newspart.ui.dashboard;
+package com.example.liyuchen.ui.home;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,12 +8,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-public class CovidViewAdapter extends FragmentPagerAdapter {
+public class HomeViewAdapter extends FragmentPagerAdapter {
 
     List<Fragment> pages;
     List<String> titles;
 
-    public CovidViewAdapter(@NonNull FragmentManager fm, List<Fragment> pages, List<String> titles) {
+    public HomeViewAdapter(@NonNull FragmentManager fm, List<Fragment> pages, List<String> titles) {
         super(fm);
         this.pages=pages;
         this.titles=titles;

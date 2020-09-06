@@ -1,4 +1,4 @@
-package com.example.newspart.ui.dashboard;
+package com.example.liyuchen.ui.dashboard;
 
 import androidx.fragment.app.Fragment;
 
