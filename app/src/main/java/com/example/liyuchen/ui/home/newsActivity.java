@@ -2,12 +2,13 @@ package com.example.liyuchen.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.liyuchen.R;
 
-public class newsActivity extends AppCompatActivity {
+public class newsActivity extends Activity {
 
     private TextView title;
     private TextView author;
