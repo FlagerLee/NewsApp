@@ -4,13 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.newspart.R;
@@ -38,12 +34,12 @@ public class DashboardFragment extends Fragment {
         tabs=root.findViewById(R.id.tablayout_covid);
 
         titles=new ArrayList<>();
-        titles.add("最新新闻");
+        titles.add("最新数据");
         titles.add("疫情图谱");
         titles.add("知疫学者");
 
         pages=new ArrayList<>();
-        pages.add(new CovidNewsFragment());
+        pages.add(new CovidDataFragment());
         pages.add(new CovidPictureFragment());
         pages.add(new CovidScientistFragment());
 
