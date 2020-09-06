@@ -23,6 +23,9 @@ public class EventDetail extends BaseModel {
     private String Time;
 
     @Column
+    private String Title;
+
+    @Column
     private String GreenWhichTime;
 
     @Column
@@ -46,6 +49,9 @@ public class EventDetail extends BaseModel {
     }
     public String getTime() {
         return this.Time;
+    }
+    public String getTitle() {
+        return this.Title;
     }
     public String getGreenWhichTime() {
         return this.GreenWhichTime;
@@ -72,6 +78,9 @@ public class EventDetail extends BaseModel {
     }
     public void setTime(String time) {
         this.Time = time;
+    }
+    public void setTitle(String title) {
+        this.Title = title;
     }
     public void setGreenWhichTime(String greenWhichTime) {
         this.GreenWhichTime = greenWhichTime;

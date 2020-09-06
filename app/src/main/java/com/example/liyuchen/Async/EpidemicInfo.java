@@ -11,58 +11,45 @@ import java.util.Date;
 public class EpidemicInfo extends BaseModel {
 
     @PrimaryKey
-    private String Country;
-
-    @PrimaryKey
-    private String Province;
-
-    @PrimaryKey
-    private String City;
+    private String Region;
 
     @Column
     private Date StartTime;
 
     @Column
-    private Date CurrentDate;
+    private int Days;
 
     @Column
-    private int Confirmed;
+    private long Confirmed;
 
     @Column
-    private int Cured;
+    private long Cured;
 
     @Column
-    private int Dead;
+    private long Dead;
 
     @Column
     private int Risk;
+    //从开始到现在过了多少天
 
     //Functions used for query
 
-    public String getCountry() {
-        return this.Country;
+    public String getRegion() {
+        return this.Region;
     }
-    public String getProvince() {
-        return this.Province;
-    }
-    public String getCity() {
-        return this.City;
-    }
-
     public Date getStartTime() {
         return this.StartTime;
     }
-    public Date getCurrentDate() {
-        return this.CurrentDate;
+    public int getDays() {
+        return this.Days;
     }
-
-    public int getConfirmed() {
+    public long getConfirmed() {
         return this.Confirmed;
     }
-    public int getCured() {
+    public long getCured() {
         return this.Cured;
     }
-    public int getDead() {
+    public long getDead() {
         return this.Dead;
     }
     public int getRisk() {
@@ -71,28 +58,22 @@ public class EpidemicInfo extends BaseModel {
 
     //Functions used for add/del/update
 
-    public void setCountry(String country) {
-        this.Country = country;
-    }
-    public void setProvince(String province) {
-        this.Province = province;
-    }
-    public void setCity(String city) {
-        this.City = city;
+    public void setRegion(String region) {
+        this.Region = region;
     }
     public void setStartTime(Date startTime) {
         this.StartTime = startTime;
     }
-    public void setCurrentDate(Date currentDate) {
-        this.CurrentDate = currentDate;
+    public void setDays(int days) {
+        this.Days = days;
     }
-    public void setConfirmed(int confirmed) {
+    public void setConfirmed(long confirmed) {
         this.Confirmed = confirmed;
     }
-    public void setCured(int cured) {
+    public void setCured(long cured) {
         this.Cured = cured;
     }
-    public void setDead(int dead) {
+    public void setDead(long dead) {
         this.Dead = dead;
     }
     public void setRisk(int risk) {
