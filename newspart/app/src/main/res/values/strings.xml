@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">news part</string>
-    <string name="title_home">新闻主页</string>
-    <string name="title_dashboard">疫情相关</string>
-    <string name="title_notifications">个人中心</string>
-</resources>
