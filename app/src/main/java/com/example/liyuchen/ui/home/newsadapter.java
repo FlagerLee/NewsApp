@@ -56,9 +56,12 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
         this.context=context;
     }
 
-    public void addnews(newslayout news)
+    public void addNews(newslayout news)
     {
         this.news.add(news);
+    }
+    public void delNews() {
+        this.news.clear();
     }
 
     @NonNull
