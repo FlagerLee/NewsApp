@@ -45,13 +45,39 @@
                 android:layout_weight="1"
                 android:text="TextView" />
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="下载     " />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="分享" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/news_content"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="TextView" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/news_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
