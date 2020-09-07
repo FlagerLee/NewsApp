@@ -1,9 +1,12 @@
 package com.example.liyuchen.ui.home;
 
 import android.os.Bundle;
+import android.os.Process;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +25,7 @@ public class HomeFragment extends Fragment {
     private List<Fragment>pages;
     private HomeViewAdapter adapter;
     private ViewPager viewpager;
+    private SearchView searchview;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class HomeFragment extends Fragment {
     private void init(View root)
     {
         tabs=root.findViewById(R.id.tablayout_home);
+        searchview=root.findViewById(R.id.home_searchview);
 
         titles=new ArrayList<>();
         titles.add("时事热点");
@@ -50,4 +55,6 @@ public class HomeFragment extends Fragment {
         tabs.setupWithViewPager(viewpager);
         viewpager.setAdapter(adapter);
     }
+
+
 }

@@ -39,7 +39,7 @@ public class HistoryFragment extends Fragment {
         news=new ArrayList<>();
         for(int i=0;i<100;i++)
         {
-            newslayout apnews=new newslayout("history title "+i,"author "+i,"time "+i,"content "+i);
+            newslayout apnews=new newslayout("history title "+i,"author "+i,"time "+i,"content "+i,false);
             news.add(apnews);
         }
     }
