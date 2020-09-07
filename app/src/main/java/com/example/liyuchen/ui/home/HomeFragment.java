@@ -26,7 +26,6 @@ public class HomeFragment extends Fragment {
     private HomeViewAdapter adapter;
     private ViewPager viewpager;
     private SearchView searchview;
-    private static ProgressBar progressbar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,22 +34,10 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-    public static void showprogressbar()
-    {
-        progressbar.setVisibility(View.VISIBLE);
-    }
-
-    public static void notshowprogressbar()
-    {
-        progressbar.setVisibility(View.GONE);
-    }
-
     private void init(View root)
     {
         tabs=root.findViewById(R.id.tablayout_home);
         searchview=root.findViewById(R.id.home_searchview);
-        progressbar=root.findViewById(R.id.progressbar_up);
-        notshowprogressbar();
 
         titles=new ArrayList<>();
         titles.add("时事热点");

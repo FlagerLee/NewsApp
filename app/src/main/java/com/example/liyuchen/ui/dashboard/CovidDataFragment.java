@@ -134,6 +134,7 @@ public class CovidDataFragment extends Fragment {
         linechart.setDrawGridBackground(true);
         linechart.setDragEnabled(true);
         linechart.setNoDataText("no data found");
+//        linechart.setScaleY(1);
         for(int i=1;i<100;i++)
             coviddata.add(new Entry(i,i));
         linedata=new LineDataSet(coviddata,"coviddata");

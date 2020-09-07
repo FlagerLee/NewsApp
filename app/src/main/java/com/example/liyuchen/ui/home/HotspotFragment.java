@@ -32,15 +32,6 @@ public class HotspotFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         newsadapter adapter=new newsadapter(news,this.getContext());
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if((dy>0&&!recyclerView.canScrollVertically(1))||(dy<0&&!recyclerView.canScrollVertically(-1)))
-                    HomeFragment.showprogressbar();
-
-            }
-        });
         return root;
     }
 
