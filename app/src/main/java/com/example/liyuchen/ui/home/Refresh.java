@@ -8,6 +8,8 @@ import com.example.liyuchen.Async.Information;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Refresh {
     public static void refresh(String type, int page, int size, SetContent callback) {
@@ -31,12 +33,21 @@ public class Refresh {
                 for(int i = 0; i < dataList.size(); i ++) {
                     String singleData = dataList.get(i);
                     params = JSONObject.parseObject(singleData, new TypeReference<Map<String, String> >(){});
+
+                    //split content into several paragraphs through ','
+                    String content = params.get("content");
+                    StringBuilder builder = new StringBuilder(content);
+                    for(int j = 0; j < content.length(); j ++) {
+                        if(builder.charAt(j) == ',' && (builder.charAt(j + 1) != ' ' && (!Character.isDigit(builder.charAt(j + 1))) && (!Character.isDigit(builder.charAt(j - 1))) )) builder.replace(j, j + 1, "\n");
+                    }
+                    content = builder.toString();
+
                     EventDetail eventDetail = new EventDetail();
                     eventDetail.setEvent_ID(params.get("_id"));
                     eventDetail.setTimeFlag(Long.parseLong(params.get("tflag")));
                     eventDetail.setAuthor(params.get("authors"));
                     eventDetail.setCategory(params.get("category"));
-                    eventDetail.setContent(params.get("content"));
+                    eventDetail.setContent(content);
                     eventDetail.setLang(params.get("lang"));
                     eventDetail.setTime(params.get("time"));
                     eventDetail.setGreenWhichTime(params.get("date"));
@@ -62,7 +73,6 @@ public class Refresh {
                         }
                     }
                     String time = eventDetail.getTime();
-                    String content = eventDetail.getContent();
                     newslayouts.add(new newslayout(title, author, time, content));
                 }
 

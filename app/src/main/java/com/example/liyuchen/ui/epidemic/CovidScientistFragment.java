@@ -1,4 +1,4 @@
-package com.example.liyuchen.ui.dashboard;
+package com.example.liyuchen.ui.epidemic;
 
 import androidx.fragment.app.Fragment;
 

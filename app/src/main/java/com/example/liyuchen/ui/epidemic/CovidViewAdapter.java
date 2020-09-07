@@ -1,4 +1,4 @@
-package com.example.liyuchen.ui.dashboard;
+package com.example.liyuchen.ui.epidemic;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

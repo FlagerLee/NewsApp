@@ -14,6 +14,15 @@ public class EpidemicInfo extends BaseModel {
     private String Region;
 
     @Column
+    private String Country;
+
+    @Column
+    private String Province;
+
+    @Column
+    private String County;
+
+    @Column
     private Date StartTime;
 
     @Column
@@ -36,6 +45,15 @@ public class EpidemicInfo extends BaseModel {
 
     public String getRegion() {
         return this.Region;
+    }
+    public String getCountry() {
+        return this.Country;
+    }
+    public String getProvince() {
+        return this.Province;
+    }
+    public String getCounty() {
+        return this.County;
     }
     public Date getStartTime() {
         return this.StartTime;
@@ -60,6 +78,15 @@ public class EpidemicInfo extends BaseModel {
 
     public void setRegion(String region) {
         this.Region = region;
+    }
+    public void setCountry(String country) {
+        this.Country = country;
+    }
+    public void setProvince(String province) {
+        this.Province = province;
+    }
+    public void setCounty(String county) {
+        this.County = county;
     }
     public void setStartTime(Date startTime) {
         this.StartTime = startTime;
