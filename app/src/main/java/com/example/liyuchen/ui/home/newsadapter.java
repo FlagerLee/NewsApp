@@ -24,6 +24,8 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
+        String newsID;
+
         TextView title;
         TextView author;
         TextView time;

@@ -9,7 +9,6 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.Date;
 
-import static com.raizlabs.android.dbflow.sql.language.Method.count;
 import static com.raizlabs.android.dbflow.sql.language.Method.min;
 
 public class History {
@@ -17,18 +16,17 @@ public class History {
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    HistoryNews historyNews = (HistoryNews) SQLite.select()
+                    HistoryNews historyNews = new HistoryNews();
+                    historyNews.setHistoryNews(SQLite.select()
                             .from(EventDetail.class)
                             .where(EventDetail_Table.Event_ID.eq(id))
-                            .querySingle();
-                    Date date = new Date();
-                    historyNews.setLastViewed(date);
+                            .querySingle());
                     AsyncFunctions.DatabaseCURD(historyNews, "SAVE", (statement, errMsg) -> {
                         if(!statement) {
                             //TODO: deal with errMsg
                         }
                         else {
-                            long numOfHistories = SQLite.select(count())
+                            long numOfHistories = SQLite.select()
                                     .from(HistoryNews.class).count();
                             if(numOfHistories > 200) {
                                 HistoryNews newsToBeDeleted = SQLite.select(min(HistoryNews_Table.LastViewed))
@@ -56,4 +54,5 @@ public class History {
         if(historyNews == null) return false;
         else return true;
     }
+
 }
