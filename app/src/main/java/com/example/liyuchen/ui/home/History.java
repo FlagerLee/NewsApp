@@ -8,6 +8,7 @@ import com.example.liyuchen.Async.HistoryNews_Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.raizlabs.android.dbflow.sql.language.Method.min;
 
@@ -54,6 +55,9 @@ public class History {
                 .querySingle();
         if(historyNews == null) return false;
         else return true;
+    }
+    static public List<HistoryNews> getHistory() {
+        return SQLite.select().from(HistoryNews.class).orderBy(HistoryNews_Table.LastViewed, false).queryList();
     }
 
 }
