@@ -21,6 +21,8 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.security.KeyStore;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -56,12 +58,7 @@ public class CovidDataFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_covid_data, container, false);
-        for(int i=0;i<10;i++)
-            string_country.add("c"+i);
-        for(int i=0;i<20;i++)
-            string_province.add("p"+i);
-        for(int i=0;i<100;i++)
-            string_district.add("d"+i);
+        string_country=CovidData.getRegioninfo();
         initspinner(root);
         initlinechart(root);
         return root;
@@ -85,7 +82,8 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country=spinner_country.getSelectedItem().toString();
-//                Toast.makeText(root.getContext(),country,Toast.LENGTH_LONG).show();
+                string_province=CovidData.getRegioninfo(country);
+                initspinner(root);
             }
 
             @Override
@@ -97,7 +95,8 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 province=spinner_province.getSelectedItem().toString();
-//                Toast.makeText(root.getContext(),province,Toast.LENGTH_LONG).show();
+                string_district=CovidData.getRegioninfo(country,province);
+                initspinner(root);
             }
 
             @Override
@@ -109,7 +108,9 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 district=spinner_district.getSelectedItem().toString();
-//                Toast.makeText(root.getContext(),district,Toast.LENGTH_LONG).show();
+                description.setText(country+"."+province+"."+district);
+                getcoviddata();
+                linechart.invalidate();
             }
 
             @Override
@@ -119,10 +120,23 @@ public class CovidDataFragment extends Fragment {
         });
     }
 
-    private void getcoviddata(String str)
+    private void chooseplace()
     {
-//        *******
 
+    }
+
+    private void getcoviddata()
+    {
+        DateFormat df=DateFormat.getDateInstance();
+        List<Entry> temp_data=CovidData.getCovidData("confirmed", country, province, district);
+        for(int i=0;i<temp_data.size();i++)
+            confirmed_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+        temp_data=CovidData.getCovidData("cured", country, province, district);
+        for(int i=0;i<temp_data.size();i++)
+            cured_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+        temp_data=CovidData.getCovidData("dead", country, province, district);
+        for(int i=0;i<temp_data.size();i++)
+            dead_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
     }
 
     private void initlinechart(View root)
@@ -131,7 +145,6 @@ public class CovidDataFragment extends Fragment {
         linechart.setDescription(description);
         description.setText(country+"."+province+"."+district);
         description.setTextSize(20);
-//        linechart.setDrawGridBackground(true);
         linechart.setTouchEnabled(true);
         linechart.setDragEnabled(true);
         linechart.setNoDataText("no data found");
