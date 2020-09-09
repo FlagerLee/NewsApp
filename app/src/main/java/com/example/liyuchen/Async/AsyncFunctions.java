@@ -21,7 +21,7 @@ import javax.net.ssl.TrustManager;
 
 public class AsyncFunctions {
 
-    static private ExecutorService es = Executors.newCachedThreadPool();
+    static private ExecutorService es = Executors.newFixedThreadPool(1024);
 
     static private SSLContext sslContext = null;
 

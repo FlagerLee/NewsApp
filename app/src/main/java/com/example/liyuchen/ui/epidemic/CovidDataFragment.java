@@ -58,7 +58,10 @@ public class CovidDataFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_covid_data, container, false);
-        string_country=CovidData.getRegioninfo();
+        string_country=CovidData.getRegionInfo();
+        Refresh.refresh(() -> {
+            //TODO: do nothing
+        });
         initspinner(root);
         initlinechart(root);
         return root;
@@ -82,7 +85,7 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country=spinner_country.getSelectedItem().toString();
-                string_province=CovidData.getRegioninfo(country);
+                string_province=CovidData.getRegionInfo(country);
                 initspinner(root);
             }
 
@@ -95,7 +98,7 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 province=spinner_province.getSelectedItem().toString();
-                string_district=CovidData.getRegioninfo(country,province);
+                string_district=CovidData.getRegionInfo(country,province);
                 initspinner(root);
             }
 
@@ -130,13 +133,13 @@ public class CovidDataFragment extends Fragment {
         DateFormat df=DateFormat.getDateInstance();
         List<Entry> temp_data=CovidData.getCovidData("confirmed", country, province, district);
         for(int i=0;i<temp_data.size();i++)
-            confirmed_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+            confirmed_data.add(new Entry(i,temp_data.get(i).getY()));
         temp_data=CovidData.getCovidData("cured", country, province, district);
         for(int i=0;i<temp_data.size();i++)
-            cured_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+            cured_data.add(new Entry(i,temp_data.get(i).getY()));
         temp_data=CovidData.getCovidData("dead", country, province, district);
         for(int i=0;i<temp_data.size();i++)
-            dead_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+            dead_data.add(new Entry(i,temp_data.get(i).getY()));
     }
 
     private void initlinechart(View root)
