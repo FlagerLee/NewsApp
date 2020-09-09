@@ -10,31 +10,22 @@
         android:orientation="vertical" >
 
         <Spinner
-            android:id="@+id/spinner_global"
+            android:id="@+id/spinner_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/place" />
-
-        <Spinner
-            android:id="@+id/spinner_district"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/district"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
         <Spinner
             android:id="@+id/spinner_province"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/province"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <Spinner
-            android:id="@+id/spinner_country"
+            android:id="@+id/spinner_district"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/country"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/linechart_covid"
