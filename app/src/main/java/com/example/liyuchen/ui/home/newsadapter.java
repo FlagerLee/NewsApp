@@ -43,6 +43,7 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
                 @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
+                    History.setHistory(newsID);
                     Intent intent=new Intent(context,newsActivity.class);
                     intent.putExtra("title",title.getText());
                     intent.putExtra("author",author.getText());
@@ -81,10 +82,11 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull newsadapter.ViewHolder holder, int position) {
         newslayout  newlayout=news.get(position);
+        holder.newsID = newlayout.getNewsID();
         holder.title.setText(newlayout.getTitle());
         holder.author.setText(newlayout.getAuthor());
         holder.time.setText(newlayout.getTime());
-        if(newlayout.isread())
+        if(newlayout.isRead())
             holder.title.setTextColor(R.color.black);
         else
             holder.title.setTextColor(R.color.yellow);

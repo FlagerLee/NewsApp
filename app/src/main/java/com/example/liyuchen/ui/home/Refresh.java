@@ -74,7 +74,7 @@ public class Refresh {
                     }
                     String time = eventDetail.getTime();
                     boolean isRead = History.inHistory(eventDetail.getEvent_ID());
-                    newslayouts.add(new newslayout(title, author, time, content, isRead));
+                    newslayouts.add(new newslayout(eventDetail.getEvent_ID(), title, author, time, content, isRead));
                 }
 
             }

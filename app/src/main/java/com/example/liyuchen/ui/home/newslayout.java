@@ -2,27 +2,33 @@ package com.example.liyuchen.ui.home;
 
 public class newslayout {
 
+    private String newsID;
     private String title;
     private String author;
     private String time;
     private String content;
-    private boolean isread=false;
+    private boolean isRead=false;
 
-    public newslayout(String title, String author, String time, String content, boolean isread)
+    public newslayout(String newsID, String title, String author, String time, String content, boolean isRead)
     {
+        this.newsID = newsID;
         this.title=title;
         this.author=author;
         this.time=time;
         this.content=content;
-        this.isread=isread;
+        this.isRead=isRead;
     }
 
-    public boolean isread()
+    public boolean isRead()
     {
-        return isread;
+        return isRead;
     }
 
-    public void read() { isread=true; }
+    public void read() { isRead=true; }
+
+    public String getNewsID() {
+        return this.newsID;
+    }
 
     public String getTime() {
         return time;

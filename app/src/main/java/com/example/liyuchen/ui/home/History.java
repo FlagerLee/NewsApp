@@ -45,6 +45,7 @@ public class History {
                 }
             }
         };
+        thread.start();
     }
     static public boolean inHistory(final String id) {
         HistoryNews historyNews = SQLite.select()
