@@ -11,6 +11,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.List;
 
 public class Refresh {
@@ -29,7 +30,14 @@ public class Refresh {
                         String region = rInfo.Region;
                         String[] address = region.split("\\|");
                         String regionData = jsonObject.getString(region);
-                        JSONObject mid = new JSONObject(regionData);
+                        JSONObject mid = null;
+                        try {
+                            mid = new JSONObject(regionData);
+                        }
+                        catch (Exception e) {
+                            //cannot find Region
+                            continue;
+                        }
                         String startDate = mid.getString("begin");
                         JSONArray data = new JSONArray(mid.getString("data"));
                         EpidemicInfo oldInfo = SQLite.select()
@@ -37,7 +45,8 @@ public class Refresh {
                                 .where(EpidemicInfo_Table.Region.eq(region))
                                 .orderBy(EpidemicInfo_Table.Days, true)
                                 .querySingle();
-                        int days = oldInfo.getDays();
+                        int days = 0;
+                        if(oldInfo != null) days = oldInfo.getDays();
                         for(int i = days + 1; i <= data.length(); i ++) {
                             EpidemicInfo newInfo = new EpidemicInfo();
                             newInfo.setRegion(region);
@@ -47,6 +56,7 @@ public class Refresh {
                             if(regionLength > 2) newInfo.setCounty(address[2]);
 
                             JSONArray detailData = new JSONArray(data.getString(i));
+                            newInfo.setStartTime(new Date(startDate));
                             newInfo.setConfirmed(Long.parseLong(detailData.getString(0)));
                             newInfo.setCured(Long.parseLong(detailData.getString(3)));
                             newInfo.setDead(Long.parseLong(detailData.getString(4)));
@@ -59,6 +69,7 @@ public class Refresh {
                             });
                         }
                     }
+
                 }
                 catch (Exception e) {
 

@@ -16,4 +16,5 @@ public class Information {
     public static final String eventDetailURL = "https://covid-dashboard-api.aminer.cn/event/";
     public static final String entityQueryURL = "https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery";
     public static final String expertsURL = "https://innovaapi.aminer.cn/predictor/api/v1/valhalla/highlight/get_ncov_expers_list?v=2";
+    public static final String regionsInfoURL = "https://covid-dashboard.aminer.cn/api/dist/regions-info.csv";
 }

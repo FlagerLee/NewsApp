@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.liyuchen.MainActivity;
 import com.example.liyuchen.R;
 
 import java.util.List;
@@ -100,3 +99,4 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
     }
 
 }
+
