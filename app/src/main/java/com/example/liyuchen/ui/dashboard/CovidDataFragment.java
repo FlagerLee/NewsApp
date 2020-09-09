@@ -22,6 +22,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.security.KeyStore;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +42,12 @@ public class CovidDataFragment extends Fragment {
     private String district="海淀";
     private LineChart linechart;
     private Description description=new Description();
-    private ArrayList<Entry> coviddata=new ArrayList<>();
-    private LineDataSet linedata;
+    private ArrayList<Entry> confirmed_data=new ArrayList<>();
+    private ArrayList<Entry> cured_data=new ArrayList<>();
+    private ArrayList<Entry> dead_data=new ArrayList<>();
+    private LineDataSet confirmed_linedata;
+    private LineDataSet cured_linedata;
+    private LineDataSet dead_linedata;
     private LineData line;
 
     public CovidDataFragment() {
@@ -114,6 +119,12 @@ public class CovidDataFragment extends Fragment {
         });
     }
 
+    private void getcoviddata(String str)
+    {
+//        *******
+
+    }
+
     private void initlinechart(View root)
     {
         linechart=root.findViewById(R.id.linechart_covid);
@@ -129,10 +140,20 @@ public class CovidDataFragment extends Fragment {
         linechart.getAxisLeft().setGranularity(1.0f);
         linechart.getAxisRight().setGranularity(1.0f);
         linechart.zoom(10f,1f,1f,1f);
-        for(int i=1;i<100;i++)
-            coviddata.add(new Entry(i,i));
-        linedata=new LineDataSet(coviddata,"coviddata");
-        line=new LineData(linedata);
+        for(int i=0;i<100;i++)
+        {
+            confirmed_data.add(new Entry(i,i*3));
+            cured_data.add(new Entry(i,i*2));
+            dead_data.add(new Entry(i,i));
+        }
+        confirmed_linedata=new LineDataSet(confirmed_data,"confirmed");
+        cured_linedata=new LineDataSet(cured_data,"cured");
+        dead_linedata=new LineDataSet(dead_data,"dead");
+        line=new LineData();
+        line.addDataSet(confirmed_linedata);
+        line.addDataSet(cured_linedata);
+        line.addDataSet(dead_linedata);
+        line.setValueTextSize(10);
         linechart.setData(line);
         linechart.invalidate();
     }
