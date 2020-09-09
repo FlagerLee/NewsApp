@@ -1,5 +1,6 @@
 package com.example.liyuchen.ui.dashboard;
 
+import android.opengl.Matrix;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +80,7 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country=spinner_country.getSelectedItem().toString();
-                Toast.makeText(root.getContext(),country,Toast.LENGTH_LONG).show();
+//                Toast.makeText(root.getContext(),country,Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -91,7 +92,7 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 province=spinner_province.getSelectedItem().toString();
-                Toast.makeText(root.getContext(),province,Toast.LENGTH_LONG).show();
+//                Toast.makeText(root.getContext(),province,Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -103,7 +104,7 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 district=spinner_district.getSelectedItem().toString();
-                Toast.makeText(root.getContext(),district,Toast.LENGTH_LONG).show();
+//                Toast.makeText(root.getContext(),district,Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -119,10 +120,15 @@ public class CovidDataFragment extends Fragment {
         linechart.setDescription(description);
         description.setText(country+"."+province+"."+district);
         description.setTextSize(20);
-        linechart.setDrawGridBackground(true);
+//        linechart.setDrawGridBackground(true);
+        linechart.setTouchEnabled(true);
         linechart.setDragEnabled(true);
         linechart.setNoDataText("no data found");
-//        linechart.setScaleY(1);
+        linechart.setScaleEnabled(false);
+        linechart.getXAxis().setGranularity(1.0f);
+        linechart.getAxisLeft().setGranularity(1.0f);
+        linechart.getAxisRight().setGranularity(1.0f);
+        linechart.zoom(10f,1f,1f,1f);
         for(int i=1;i<100;i++)
             coviddata.add(new Entry(i,i));
         linedata=new LineDataSet(coviddata,"coviddata");
