@@ -25,6 +25,11 @@ public class EntityInfoAdapter extends RecyclerView.Adapter<EntityInfoAdapter.Vi
             content=itemView.findViewById(R.id.textView_entityinfocontent);
         }
     }
+
+    public EntityInfoAdapter(List<EntityInfoLayout> list) {
+        infolist = list;
+    }
+
     @NonNull
     @Override
     public EntityInfoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

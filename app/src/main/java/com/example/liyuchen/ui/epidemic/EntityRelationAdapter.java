@@ -44,6 +44,10 @@ public class EntityRelationAdapter extends RecyclerView.Adapter<EntityRelationAd
         }
     }
 
+    public EntityRelationAdapter (List<EntityRelationLayout> list) {
+        relatedlist = list;
+    }
+
     @NonNull
     @Override
     public EntityRelationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

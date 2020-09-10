@@ -25,7 +25,7 @@ public class EntityResultAdapter extends RecyclerView.Adapter<EntityResultAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView=itemView.findViewById(R.id.textview_entityname);
+            textView=itemView.findViewById(R.id.textview_entitytitle);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
