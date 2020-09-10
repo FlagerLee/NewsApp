@@ -2,6 +2,8 @@ package com.example.liyuchen.ui.epidemic;
 
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,16 +54,27 @@ public class CovidDataFragment extends Fragment {
     private LineDataSet dead_linedata;
     private LineData line;
 
+    private boolean finish = false;
+
     public CovidDataFragment() {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_covid_data, container, false);
-        string_country=CovidData.getRegionInfo();
-        Refresh.refresh(() -> {
-            //TODO: do nothing
+        CovidData.getRegionInfo(list -> {
+            string_country = list;
+            this.finish = true;
         });
+        Refresh.refresh();
+        while(!this.finish) {
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+                continue;
+            }
+        }
+        this.finish = false;
         initspinner(root);
         initlinechart(root);
         return root;
@@ -85,8 +98,22 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country=spinner_country.getSelectedItem().toString();
-                string_province=CovidData.getRegionInfo(country);
-                initspinner(root);
+                string_district.clear();
+                CovidData.getRegionInfo(country, list -> {
+                    string_province = list;
+                    CovidDataFragment.this.finish = true;
+                });
+
+                while(!CovidDataFragment.this.finish) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                        continue;
+                    }
+                }
+                CovidDataFragment.this.finish = true;
+
+                //initspinner(root);
             }
 
             @Override
@@ -98,8 +125,21 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 province=spinner_province.getSelectedItem().toString();
-                string_district=CovidData.getRegionInfo(country,province);
-                initspinner(root);
+                CovidData.getRegionInfo(country, province, list -> {
+                    string_district = list;
+                    CovidDataFragment.this.finish = true;
+                });
+
+                while(!CovidDataFragment.this.finish) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                        continue;
+                    }
+                }
+                CovidDataFragment.this.finish = false;
+
+                //initspinner(root);
             }
 
             @Override
@@ -112,8 +152,25 @@ public class CovidDataFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 district=spinner_district.getSelectedItem().toString();
                 description.setText(country+"."+province+"."+district);
-                getcoviddata();
+
+                CovidData.getCovidData(country, province, district, ((confirmedEntry, curedEntry, deadEntry) -> {
+                    confirmed_data = (ArrayList<Entry>) confirmedEntry;
+                    cured_data = (ArrayList<Entry>) curedEntry;
+                    dead_data = (ArrayList<Entry>) deadEntry;
+                    CovidDataFragment.this.finish = true;
+                }));
+
+                while(!CovidDataFragment.this.finish) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e) {
+                        continue;
+                    }
+                }
+                CovidDataFragment.this.finish = false;
+
                 linechart.invalidate();
+
             }
 
             @Override
@@ -121,25 +178,7 @@ public class CovidDataFragment extends Fragment {
 
             }
         });
-    }
 
-    private void chooseplace()
-    {
-
-    }
-
-    private void getcoviddata()
-    {
-        DateFormat df=DateFormat.getDateInstance();
-        List<Entry> temp_data=CovidData.getCovidData("confirmed", country, province, district);
-        for(int i=0;i<temp_data.size();i++)
-            confirmed_data.add(new Entry(i,temp_data.get(i).getY()));
-        temp_data=CovidData.getCovidData("cured", country, province, district);
-        for(int i=0;i<temp_data.size();i++)
-            cured_data.add(new Entry(i,temp_data.get(i).getY()));
-        temp_data=CovidData.getCovidData("dead", country, province, district);
-        for(int i=0;i<temp_data.size();i++)
-            dead_data.add(new Entry(i,temp_data.get(i).getY()));
     }
 
     private void initlinechart(View root)

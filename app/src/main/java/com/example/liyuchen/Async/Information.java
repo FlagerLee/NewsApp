@@ -17,4 +17,9 @@ public class Information {
     public static final String entityQueryURL = "https://innovaapi.aminer.cn/covid/api/v1/pneumonia/entityquery";
     public static final String expertsURL = "https://innovaapi.aminer.cn/predictor/api/v1/valhalla/highlight/get_ncov_expers_list?v=2";
     public static final String regionsInfoURL = "https://covid-dashboard.aminer.cn/api/dist/regions-info.csv";
+    public static final String refreshURL = "https://www.flagerlee.com/JavaWork/refresh";
+    public static final String getCountryURL = "https://www.flagerlee.com/JavaWork/Country";
+    public static final String getProvinceURL = "https://www.flagerlee.com/JavaWork/Province";
+    public static final String getCountyURL = "https://www.flagerlee.com/JavaWork/County";
+    public static final String QueryURL = "https://www.flagerlee.com/JavaWork/Query";
 }
