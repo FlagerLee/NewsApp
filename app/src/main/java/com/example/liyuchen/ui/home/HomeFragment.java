@@ -1,11 +1,11 @@
 package com.example.liyuchen.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Process;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.liyuchen.R;
+import com.example.liyuchen.ui.notifications.NotificationsFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class HomeFragment extends Fragment {
     private HomeViewAdapter adapter;
     private ViewPager viewpager;
     private SearchView searchview;
+    private ImageView imageview;
+    private String tosearch;
+    private int chips_total;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,16 +42,24 @@ public class HomeFragment extends Fragment {
     {
         tabs=root.findViewById(R.id.tablayout_home);
         searchview=root.findViewById(R.id.home_searchview);
+        imageview=root.findViewById(R.id.home_imageview_chip);
+        imageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(root.getContext(),SelectActivity.class);
+                startActivity(intent);
+            }
+        });
 
         titles=new ArrayList<>();
-        titles.add("时事热点");
-        titles.add("已存新闻");
-        titles.add("浏览历史");
+        titles.add("ALL");
+        titles.add("NEWS");
+        titles.add("PAPERS");
 
         pages=new ArrayList<>();
         pages.add(new HotspotFragment());
-        pages.add(new SavedFragment());
-        pages.add(new HistoryFragment());
+        pages.add(new NewsFragment());
+        pages.add(new PaperFragement());
 
         adapter=new HomeViewAdapter(getChildFragmentManager(),pages,titles);
         viewpager=root.findViewById(R.id.viewpager_home);

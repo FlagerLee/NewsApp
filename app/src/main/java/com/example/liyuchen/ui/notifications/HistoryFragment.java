@@ -1,4 +1,4 @@
-package com.example.liyuchen.ui.home;
+package com.example.liyuchen.ui.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liyuchen.Async.HistoryNews;
 import com.example.liyuchen.R;
+import com.example.liyuchen.ui.home.History;
+import com.example.liyuchen.ui.home.newsadapter;
+import com.example.liyuchen.ui.home.newslayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +28,7 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home_history, container, false);
+        View root = inflater.inflate(R.layout.fragment_notification_history, container, false);
 
         this.news = new ArrayList<>();
         List<HistoryNews> historyNews = History.getHistory();
