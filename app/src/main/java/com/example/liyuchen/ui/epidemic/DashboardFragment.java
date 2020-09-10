@@ -1,4 +1,4 @@
-package com.example.liyuchen.ui.dashboard;
+package com.example.liyuchen.ui.epidemic;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

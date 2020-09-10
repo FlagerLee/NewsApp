@@ -1,7 +1,9 @@
-package com.example.liyuchen.ui.dashboard;
+package com.example.liyuchen.ui.epidemic;
 
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +26,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
-import java.security.KeyStore;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,9 +42,9 @@ public class CovidDataFragment extends Fragment {
     private ArrayAdapter<String> adapter_country;
     private ArrayAdapter<String> adapter_province;
     private ArrayAdapter<String> adapter_district;
-    private String country="中国";
-    private String province="北京";
-    private String district="海淀";
+    private String country="";
+    private String province="";
+    private String district="";
     private LineChart linechart;
     private Description description=new Description();
     private ArrayList<Entry> confirmed_data=new ArrayList<>();
@@ -57,14 +56,24 @@ public class CovidDataFragment extends Fragment {
     private LineData line;
     private XAxisFormat xAxisFormat;
 
+    private boolean finish = false;
+
     public CovidDataFragment() {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_covid_data, container, false);
-        string_country=CovidData.getRegioninfo();
-        initspinner(root);
+        CovidData.getRegionInfo(list -> {
+            string_country = list;
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    initspinner(root);
+                }
+            });
+        });
+        Refresh.refresh();
         initlinechart(root);
         return root;
     }
@@ -87,16 +96,34 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country=spinner_country.getSelectedItem().toString();
-                string_province=CovidData.getRegioninfo(country);
-                adapter_province=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_province);
-                adapter_province.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spinner_province.setAdapter(adapter_province);
-                string_district=new ArrayList<>();
-                adapter_district=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_district);
-                adapter_district.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spinner_district.setAdapter(adapter_district);
-                description.setText(country);
-                linechart.invalidate();
+
+                CovidData.getRegionInfo(country, (list -> {
+                    try {
+                        string_province = list;
+                        string_district.clear();
+                        adapter_province = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_province);
+                        adapter_province.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                        string_district = new ArrayList<>();
+                        adapter_district = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_district);
+                        adapter_district.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                spinner_province.setAdapter(adapter_province);
+                                spinner_district.setAdapter(adapter_district);
+                                description.setText(country);
+                                linechart.invalidate();
+                            }
+                        });
+
+
+                    }
+                    catch (Exception e) {
+                        String err = e.toString();
+                    }
+                }));
+
             }
 
             @Override
@@ -108,12 +135,21 @@ public class CovidDataFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 province=spinner_province.getSelectedItem().toString();
-                string_district=CovidData.getRegioninfo(country,province);
-                adapter_district=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_district);
-                adapter_district.setDropDownViewResource(android.R.layout.simple_spinner_item);
-                spinner_district.setAdapter(adapter_district);
-                description.setText(country+"."+province);
-                initspinner(root);
+
+                CovidData.getRegionInfo(country, province, (list -> {
+                    string_district = list;
+                    adapter_district=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_district);
+                    adapter_district.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            spinner_district.setAdapter(adapter_district);
+                            description.setText(country+"."+province);
+                            linechart.invalidate();
+                        }
+                    });
+                }));
             }
 
             @Override
@@ -121,13 +157,37 @@ public class CovidDataFragment extends Fragment {
 
             }
         });
+
         spinner_district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 district=spinner_district.getSelectedItem().toString();
                 description.setText(country+"."+province+"."+district);
-                getcoviddata();
-                linechart.invalidate();
+
+                CovidData.getCovidData(country, province, district, ((confirmedEntry, curedEntry, deadEntry) -> {
+
+                    confirmed_linedata = new LineDataSet((ArrayList<Entry>) confirmedEntry, "confirmed");
+                    cured_linedata = new LineDataSet((ArrayList<Entry>) curedEntry, "cured");
+                    dead_linedata = new LineDataSet((ArrayList<Entry>) deadEntry, "dead");
+
+
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            linechart.clear();
+                            line=new LineData();
+                            line.addDataSet(confirmed_linedata);
+                            line.addDataSet(cured_linedata);
+                            line.addDataSet(dead_linedata);
+                            line.setValueTextSize(10);
+                            linechart.setData(line);
+                            linechart.invalidate();
+
+                        }
+                    });
+                }));
+
+
             }
 
             @Override
@@ -135,32 +195,7 @@ public class CovidDataFragment extends Fragment {
 
             }
         });
-    }
 
-    private void chooseplace()
-    {
-
-    }
-
-    private void getcoviddata()
-    {
-        DateFormat df=DateFormat.getDateInstance();
-        List<Entry> temp_data=CovidData.getCovidData("confirmed", country, province, district);
-        List<String> temp_str=new ArrayList<>();
-        for(int i=0;i<temp_data.size();i++)
-        {
-            temp_str.add(df.format(new Date((long) temp_data.get(i).getX())));
-        }
-        xAxisFormat=new XAxisFormat(temp_str);
-        linechart.getXAxis().setValueFormatter(xAxisFormat);
-        for(int i=0;i<temp_data.size();i++)
-            confirmed_data.add(new Entry(i,temp_data.get(i).getY()));
-        temp_data=CovidData.getCovidData("cured", country, province, district);
-        for(int i=0;i<temp_data.size();i++)
-            cured_data.add(new Entry(i,temp_data.get(i).getY()));
-        temp_data=CovidData.getCovidData("dead", country, province, district);
-        for(int i=0;i<temp_data.size();i++)
-            dead_data.add(new Entry(i,temp_data.get(i).getY()));
     }
 
     private void initlinechart(View root)
@@ -176,7 +211,7 @@ public class CovidDataFragment extends Fragment {
         linechart.getXAxis().setGranularity(1.0f);
         linechart.getAxisLeft().setGranularity(1.0f);
         linechart.getAxisRight().setGranularity(1.0f);
-        linechart.zoom(10f,1f,1f,1f);
+        linechart.zoom(30f,1f,1f,1f);
         for(int i=0;i<100;i++)
         {
             confirmed_data.add(new Entry(i,i*3));

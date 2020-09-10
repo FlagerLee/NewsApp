@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.liyuchen.Async.HistoryNews;
 import com.example.liyuchen.R;
+import com.example.liyuchen.ui.home.History;
 import com.example.liyuchen.ui.home.newsadapter;
 import com.example.liyuchen.ui.home.newslayout;
 
@@ -27,22 +29,18 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_notification_history, container, false);
-        init(root);
+
+        this.news = new ArrayList<>();
+        List<HistoryNews> historyNews = History.getHistory();
+        for(HistoryNews hNews: historyNews) {
+            this.news.add(new newslayout(hNews.getEvent_ID(), hNews.getTitle(), hNews.getAuthor(), hNews.getTime(), hNews.getContent(), false));
+        }
+
         RecyclerView recyclerView=root.findViewById(R.id.recyclerview_history);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
         newsadapter adapter=new newsadapter(news,this.getContext());
         recyclerView.setAdapter(adapter);
         return root;
-    }
-
-    private void init(View root)
-    {
-        news=new ArrayList<>();
-        for(int i=0;i<100;i++)
-        {
-            newslayout apnews=new newslayout("history title "+i,"author "+i,"time "+i,"content "+i,false);
-            news.add(apnews);
-        }
     }
 }
