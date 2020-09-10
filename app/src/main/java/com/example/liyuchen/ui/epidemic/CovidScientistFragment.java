@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liyuchen.R;
@@ -33,6 +34,7 @@ public class CovidScientistFragment extends Fragment {
         scientists=new ArrayList<>();
         recyclerView=root.findViewById(R.id.recycler_scientist);
         adapter=new ScientistAdapter(scientists);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setAdapter(adapter);
     }
 }

@@ -28,7 +28,7 @@ public class CovidPictureFragment extends Fragment {
 
     private void init(View root)
     {
-        if(!tosearch.equals(""))
+        if(tosearch!=null&&!tosearch.equals(""))
         {
             result=root.findViewById(R.id.recycler_entitysearchresult);
 //            adapter=new EntityResultAdapter();//TODO: add a List<String> as parameter
