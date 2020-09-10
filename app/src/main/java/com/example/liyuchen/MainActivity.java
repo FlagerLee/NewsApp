@@ -14,10 +14,9 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.liyuchen.Async.*;
+import com.example.liyuchen.ui.epidemic.CovidPictureFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-import com.sina.weibo.sdk.WbSdk;
-import com.sina.weibo.sdk.auth.AuthInfo;
 
 import java.util.Date;
 import java.util.List;
@@ -42,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
+        if(getIntent().getStringExtra("return").equals("1"))
+        {
+            CovidPictureFragment.tosearch=getIntent().getStringExtra("title");
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home_hotspot,new CovidPictureFragment()).commit();
+        }
     }
 
 }
