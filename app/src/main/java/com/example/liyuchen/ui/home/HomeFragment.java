@@ -112,21 +112,29 @@ public class HomeFragment extends Fragment {
         if(requestCode==1&resultCode==1)
         {
             List<String> temp=new ArrayList<>();
+            List<Fragment> temppages=new ArrayList<>();
             temp.add("all");
+            temppages.add(new HotspotFragment());
             if(data.getStringExtra("news").equals("1"))
             {
                 temp.add("news");
+                temppages.add(new NewsFragment());
             }
             if(data.getStringExtra("papers").equals("1"))
             {
                 temp.add("papers");
+                temppages.add(new PaperFragement());
             }
             titles=temp;
+            pages=temppages;
+            adapter = new HomeViewAdapter(getChildFragmentManager(), pages, titles);
+            viewpager.setAdapter(adapter);
             tabs.removeAllTabs();
             for(int i=0;i<titles.size();i++)
             {
                 tabs.addTab(tabs.newTab().setText(titles.get(i)));
             }
+            tabs.setupWithViewPager(viewpager);
         }
     }
 }

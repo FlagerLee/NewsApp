@@ -106,7 +106,7 @@ public class HotspotFragment extends Fragment {
         news=new ArrayList<>();
     }
 
-    protected String type = "news";
+    protected String type = "";
     private int page  = 0;
     private int page_size = 20;
 

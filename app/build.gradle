@@ -61,4 +61,7 @@ dependencies {
     //Smart Refresh Layout
     implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'
     implementation  'com.scwang.smart:refresh-header-classics:2.0.1'
+
+    //Sina
+    implementation 'com.sina.weibo.sdk:core:2.0.3:openDefaultRelease@aar'
 }

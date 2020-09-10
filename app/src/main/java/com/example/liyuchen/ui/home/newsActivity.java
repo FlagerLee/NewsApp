@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.liyuchen.R;
+import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
 
 public class newsActivity extends Activity {
 
@@ -48,5 +51,16 @@ public class newsActivity extends Activity {
 
         share.setText(text);
         share.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+        WbSdk.install(this, new AuthInfo(this, AppKey, RedirectURL, ""));
+
+        mSsoHandler = new SsoHandler(newsActivity.this);
     }
+
+    private SsoHandler mSsoHandler = null;
+
+    private String AppKey = "4073260475";
+    private String AppSecret = "c23f863f31c44824afcabf764a503e77";
+    private String RedirectURL = "https://www.flagerlee.com";
 }
