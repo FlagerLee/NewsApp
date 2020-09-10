@@ -15,10 +15,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.liyuchen.R;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.security.KeyStore;
 import java.text.DateFormat;
@@ -51,6 +55,7 @@ public class CovidDataFragment extends Fragment {
     private LineDataSet cured_linedata;
     private LineDataSet dead_linedata;
     private LineData line;
+    private XAxisFormat xAxisFormat;
 
     public CovidDataFragment() {
     }
@@ -129,14 +134,21 @@ public class CovidDataFragment extends Fragment {
     {
         DateFormat df=DateFormat.getDateInstance();
         List<Entry> temp_data=CovidData.getCovidData("confirmed", country, province, district);
+        List<String> temp_str=new ArrayList<>();
         for(int i=0;i<temp_data.size();i++)
-            confirmed_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+        {
+            temp_str.add(df.format(new Date(temp_data.get(i).getX()));
+        }
+        xAxisFormat=new XAxisFormat(temp_str);
+        linechart.getXAxis().setValueFormatter(xAxisFormat);
+        for(int i=0;i<temp_data.size();i++)
+            confirmed_data.add(new Entry(i,temp_data.get(i).getY()));
         temp_data=CovidData.getCovidData("cured", country, province, district);
         for(int i=0;i<temp_data.size();i++)
-            cured_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+            cured_data.add(new Entry(i,temp_data.get(i).getY()));
         temp_data=CovidData.getCovidData("dead", country, province, district);
         for(int i=0;i<temp_data.size();i++)
-            dead_data.add(new Entry(df.format(new Date(temp_data.get(i).getX())),temp_data.get(i).getY()));
+            dead_data.add(new Entry(i,temp_data.get(i).getY()));
     }
 
     private void initlinechart(View root)
@@ -169,5 +181,18 @@ public class CovidDataFragment extends Fragment {
         line.setValueTextSize(10);
         linechart.setData(line);
         linechart.invalidate();
+    }
+}
+
+class XAxisFormat extends ValueFormatter {
+    private List<String> xAxis=new ArrayList<>();
+
+    public XAxisFormat(List<String> xAxis)
+    {
+        this.xAxis=xAxis;
+    }
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        return  xAxis.get((int)value);
     }
 }
