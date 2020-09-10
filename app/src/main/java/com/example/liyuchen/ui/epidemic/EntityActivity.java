@@ -31,9 +31,9 @@ public class EntityActivity extends AppCompatActivity {
         related=findViewById(R.id.recycler_related);
         info=findViewById(R.id.recycler_info);
         entitylist=findViewById(R.id.recycler_entitylist);
-        relationLayout_adapter=new EntityRelationAdapter();
+//        relationLayout_adapter=new EntityRelationAdapter();
         related.setAdapter(relationLayout_adapter);
-        result_adapter=new EntityResultAdapter();//TODO: string list needed
+//        result_adapter=new EntityResultAdapter();//TODO: string list needed
         entitylist.setAdapter(result_adapter);
         info.setAdapter(info_adapter);
     }

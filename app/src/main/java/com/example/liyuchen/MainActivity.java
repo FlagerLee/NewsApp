@@ -41,10 +41,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        if(getIntent().getStringExtra("return").equals("1"))
+        if(getIntent().getStringExtra("return")!=null)
         {
-            CovidPictureFragment.tosearch=getIntent().getStringExtra("title");
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home_hotspot,new CovidPictureFragment()).commit();
+            if(getIntent().getStringExtra("return").equals("1")) {
+                CovidPictureFragment.tosearch = getIntent().getStringExtra("title");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home_hotspot, new CovidPictureFragment()).commit();
+            }
         }
     }
 

@@ -31,7 +31,7 @@ public class CovidPictureFragment extends Fragment {
         if(!tosearch.equals(""))
         {
             result=root.findViewById(R.id.recycler_entitysearchresult);
-            adapter=new EntityResultAdapter();//TODO: add a List<String> as parameter
+//            adapter=new EntityResultAdapter();//TODO: add a List<String> as parameter
             result.setAdapter(adapter);
             tosearch="";
         }
@@ -40,7 +40,7 @@ public class CovidPictureFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 result=root.findViewById(R.id.recycler_entitysearchresult);
-                adapter=new EntityResultAdapter();//TODO: add a List<String> as parameter
+//                adapter=new EntityResultAdapter();//TODO: add a List<String> as parameter
                 result.setAdapter(adapter);
                 return false;
             }

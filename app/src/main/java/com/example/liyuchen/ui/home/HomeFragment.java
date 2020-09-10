@@ -12,14 +12,11 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.liyuchen.R;
-import com.example.liyuchen.ui.notifications.NotificationsFragment;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.raizlabs.android.dbflow.sql.language.Operator;
 
 import java.util.ArrayList;
 import java.util.List;

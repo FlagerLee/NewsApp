@@ -39,9 +39,7 @@ public class SelectActivity extends AppCompatActivity {
         nothave = findViewById(R.id.select_recycler_nothave);
         GridLayoutManager topgridLayoutManager = new GridLayoutManager(this, 3);
         GridLayoutManager bottomgridLayoutManager = new GridLayoutManager(this, 3);
-        topgridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         have.setLayoutManager(topgridLayoutManager);
-        bottomgridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         nothave.setLayoutManager(bottomgridLayoutManager);
         list_top.add("all");
         if(tag_news.equals("1"))
