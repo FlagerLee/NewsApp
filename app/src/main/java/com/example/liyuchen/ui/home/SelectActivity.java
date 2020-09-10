@@ -1,6 +1,7 @@
 package com.example.liyuchen.ui.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,9 +25,9 @@ public class SelectActivity extends AppCompatActivity {
         nothave=findViewById(R.id.select_recycler_nothave);
         item_news=findViewById(R.id.tabitem_news);
         item_paper=findViewById(R.id.tabitem_papers);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        have.setLayoutManager(linearLayoutManager);
-        nothave.setLayoutManager(linearLayoutManager);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(this,3);
+        gridLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        have.setLayoutManager(gridLayoutManager);
+        nothave.setLayoutManager(gridLayoutManager);
     }
 }

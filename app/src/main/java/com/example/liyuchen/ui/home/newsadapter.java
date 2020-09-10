@@ -75,7 +75,7 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull newsadapter.ViewHolder holder, int position) {
-        newslayout  newlayout=news.get(position);
+        newslayout newlayout=news.get(position);
         holder.title.setText(newlayout.getTitle());
         holder.author.setText(newlayout.getAuthor());
         holder.time.setText(newlayout.getTime());
