@@ -1,4 +1,4 @@
-package com.example.liyuchen.ui.home;
+package com.example.liyuchen.ui.notifications;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,11 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liyuchen.R;
+import com.example.liyuchen.ui.home.newsadapter;
+import com.example.liyuchen.ui.home.newslayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SavedFragment extends Fragment {
+public class HistoryFragment extends Fragment {
 
     private List<newslayout> news;
 
@@ -24,9 +26,9 @@ public class SavedFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home_saved, container, false);
+        View root = inflater.inflate(R.layout.fragment_notification_history, container, false);
         init(root);
-        RecyclerView recyclerView=root.findViewById(R.id.recyclerview_saved);
+        RecyclerView recyclerView=root.findViewById(R.id.recyclerview_history);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
         newsadapter adapter=new newsadapter(news,this.getContext());
@@ -39,7 +41,7 @@ public class SavedFragment extends Fragment {
         news=new ArrayList<>();
         for(int i=0;i<100;i++)
         {
-            newslayout apnews=new newslayout("saved title "+i,"author "+i,"time "+i,"content "+i,false);
+            newslayout apnews=new newslayout("history title "+i,"author "+i,"time "+i,"content "+i,false);
             news.add(apnews);
         }
     }

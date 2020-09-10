@@ -88,7 +88,15 @@ public class CovidDataFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 country=spinner_country.getSelectedItem().toString();
                 string_province=CovidData.getRegioninfo(country);
-                initspinner(root);
+                adapter_province=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_province);
+                adapter_province.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                spinner_province.setAdapter(adapter_province);
+                string_district=new ArrayList<>();
+                adapter_district=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_district);
+                adapter_district.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                spinner_district.setAdapter(adapter_district);
+                description.setText(country);
+                linechart.invalidate();
             }
 
             @Override
@@ -101,6 +109,10 @@ public class CovidDataFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 province=spinner_province.getSelectedItem().toString();
                 string_district=CovidData.getRegioninfo(country,province);
+                adapter_district=new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, string_district);
+                adapter_district.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                spinner_district.setAdapter(adapter_district);
+                description.setText(country+"."+province);
                 initspinner(root);
             }
 
@@ -137,7 +149,7 @@ public class CovidDataFragment extends Fragment {
         List<String> temp_str=new ArrayList<>();
         for(int i=0;i<temp_data.size();i++)
         {
-            temp_str.add(df.format(new Date(temp_data.get(i).getX()));
+            temp_str.add(df.format(new Date((long) temp_data.get(i).getX())));
         }
         xAxisFormat=new XAxisFormat(temp_str);
         linechart.getXAxis().setValueFormatter(xAxisFormat);
