@@ -36,43 +36,17 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tablayout_home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="100">
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabitem_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="ALL" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabitem_news"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="NEWS" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabitem_papers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="PAPERS" />
-
-            </com.google.android.material.tabs.TabLayout>
-
-        </LinearLayout>
+            android:layout_height="79dp"
+            android:layout_weight="1"></com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager_home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="10">
 
         </androidx.viewpager.widget.ViewPager>
 
