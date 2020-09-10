@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -170,6 +171,15 @@ public class CovidDataFragment extends Fragment {
                     cured_linedata = new LineDataSet((ArrayList<Entry>) curedEntry, "cured");
                     dead_linedata = new LineDataSet((ArrayList<Entry>) deadEntry, "dead");
 
+                    confirmed_linedata.setColors(ColorTemplate.rgb("c0392b"));
+                    confirmed_linedata.setDrawCircles(false);
+                    confirmed_linedata.setDrawValues(false);
+                    cured_linedata.setColors(ColorTemplate.rgb("2ecc71"));
+                    cured_linedata.setDrawCircles(false);
+                    cured_linedata.setDrawValues(false);
+                    dead_linedata.setColors(ColorTemplate.rgb("2d3436"));
+                    dead_linedata.setDrawCircles(false);
+                    dead_linedata.setDrawValues(false);
 
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
@@ -181,6 +191,7 @@ public class CovidDataFragment extends Fragment {
                             line.addDataSet(dead_linedata);
                             line.setValueTextSize(10);
                             linechart.setData(line);
+                            linechart.animateX(1000);
                             linechart.invalidate();
 
                         }
@@ -207,11 +218,11 @@ public class CovidDataFragment extends Fragment {
         linechart.setTouchEnabled(true);
         linechart.setDragEnabled(true);
         linechart.setNoDataText("no data found");
-        linechart.setScaleEnabled(false);
+        linechart.setScaleEnabled(true);
         linechart.getXAxis().setGranularity(1.0f);
         linechart.getAxisLeft().setGranularity(1.0f);
         linechart.getAxisRight().setGranularity(1.0f);
-        linechart.zoom(30f,1f,1f,1f);
+        linechart.zoom(1f,1f,1f,1f);
         for(int i=0;i<100;i++)
         {
             confirmed_data.add(new Entry(i,i*3));
@@ -221,6 +232,12 @@ public class CovidDataFragment extends Fragment {
         confirmed_linedata=new LineDataSet(confirmed_data,"confirmed");
         cured_linedata=new LineDataSet(cured_data,"cured");
         dead_linedata=new LineDataSet(dead_data,"dead");
+        confirmed_linedata.setColors(0xc0392b);
+        cured_linedata.setColors(0x2ecc71);
+        dead_linedata.setColors(0x2d3436);
+        confirmed_linedata.setColors(ColorTemplate.rgb("c0392b"));
+        cured_linedata.setColors(ColorTemplate.rgb("2ecc71"));
+        dead_linedata.setColors(ColorTemplate.rgb("2d3436"));
         line=new LineData();
         line.addDataSet(confirmed_linedata);
         line.addDataSet(cured_linedata);

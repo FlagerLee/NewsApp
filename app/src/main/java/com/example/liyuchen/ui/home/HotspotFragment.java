@@ -11,6 +11,7 @@ import android.widget.AbsListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +36,7 @@ public class HotspotFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home_hotspot, container, false);
         init(root);
         RecyclerView recyclerView=root.findViewById(R.id.recyclerview_hotspot);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         LinearLayoutManager layoutManager=new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(layoutManager);
         newsadapter adapter=new newsadapter(news,this.getContext());
