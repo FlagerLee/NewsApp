@@ -47,7 +47,7 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
                     intent.putExtra("title",title.getText());
                     intent.putExtra("author",author.getText());
                     intent.putExtra("time",time.getText());
-                    intent.putExtra("content",content);
+                    intent.putExtra("content",content+"\n");
                     title.setTextColor(R.color.black);
                     context.startActivity(intent);
                 }

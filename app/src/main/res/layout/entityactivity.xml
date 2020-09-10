@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.epidemic.EntityActivity"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+    tools:context=".ui.epidemic.EntityActivity" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,7 +25,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="10"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:focusable="false"
+                    android:focusableInTouchMode="true">
 
                     <TextView
                         android:id="@+id/textview_entityname"

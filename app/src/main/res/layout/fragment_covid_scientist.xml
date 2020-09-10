@@ -5,8 +5,10 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ExpertsView"
+        android:id="@+id/recycler_scientist"
         android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_height="match_parent" />
 
 

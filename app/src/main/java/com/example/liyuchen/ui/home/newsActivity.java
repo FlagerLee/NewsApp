@@ -53,9 +53,9 @@ public class newsActivity extends Activity {
         share.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-        WbSdk.install(this, new AuthInfo(this, AppKey, RedirectURL, ""));
+//        WbSdk.install(this, new AuthInfo(this, AppKey, RedirectURL, ""));
 
-        mSsoHandler = new SsoHandler(newsActivity.this);
+//        mSsoHandler = new SsoHandler(newsActivity.this);
     }
 
     private SsoHandler mSsoHandler = null;
