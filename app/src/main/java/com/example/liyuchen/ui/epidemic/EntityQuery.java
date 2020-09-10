@@ -11,7 +11,11 @@ public class EntityQuery {
                 //TODO: deal with connection failed
             }
             else {
+                try {
 
+                } catch (Exception e) {
+
+                }
             }
         });
     }
