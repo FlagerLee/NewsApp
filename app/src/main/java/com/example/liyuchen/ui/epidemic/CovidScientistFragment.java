@@ -39,7 +39,7 @@ public class CovidScientistFragment extends Fragment {
         scientists=new ArrayList<>();
         recyclerView=root.findViewById(R.id.recycler_scientist);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
-        adapter=new ScientistAdapter(scientists);
+        adapter=new ScientistAdapter(scientists, this.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.setAdapter(adapter);
 

@@ -1,5 +1,6 @@
 package com.example.liyuchen.ui.epidemic;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -34,6 +35,7 @@ import java.util.List;
 public class ScientistAdapter extends RecyclerView.Adapter<ScientistAdapter.ViewHolder> {
 
     private List<Scientistlayout> scientists;
+    private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
@@ -49,17 +51,19 @@ public class ScientistAdapter extends RecyclerView.Adapter<ScientistAdapter.View
             line.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(v.getContext(),ScientistActivity.class);
+                    Intent intent=new Intent(context,ScientistActivity.class);
                     intent.putExtra("name",name.getText());
-                    v.getContext().startActivity(intent);
+                    intent.putExtra("test", name.getText());
+                    context.startActivity(intent);
                 }
             });
         }
     }
 
-    public ScientistAdapter(List<Scientistlayout> scientists)
+    public ScientistAdapter(List<Scientistlayout> scientists, Context context)
     {
         this.scientists=scientists;
+        this.context = context;
     }
 
     public void setScientists(List<Scientistlayout> list) {
