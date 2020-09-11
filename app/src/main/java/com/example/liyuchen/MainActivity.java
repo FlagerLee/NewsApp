@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.example.liyuchen.Async.*;
+import com.example.liyuchen.ui.epidemic.CovidDataFragment;
 import com.example.liyuchen.ui.epidemic.CovidPictureFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         {
             if(getIntent().getStringExtra("return").equals("1")) {
                 CovidPictureFragment.tosearch = getIntent().getStringExtra("title");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home_hotspot, new CovidPictureFragment()).commit();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_home_hotspot, new CovidDataFragment()).commit();
             }
         }
     }

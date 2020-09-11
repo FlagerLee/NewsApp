@@ -41,6 +41,7 @@ public class CovidScientistFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         adapter=new ScientistAdapter(scientists, this.getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
 
         Experts.GetExpertsInfo(list -> {

@@ -108,6 +108,8 @@ public class HomeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1&resultCode==1)
         {
+            titles.clear();
+            pages.clear();
             List<String> temp=new ArrayList<>();
             List<Fragment> temppages=new ArrayList<>();
             temp.add("all");

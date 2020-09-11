@@ -9,7 +9,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,14 +27,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:background="#FFE698"
+                android:text="TextView"
+                android:layout_marginRight="4sp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView_entityinfocontent"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 

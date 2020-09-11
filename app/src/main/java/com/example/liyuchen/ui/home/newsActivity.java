@@ -1,7 +1,6 @@
 package com.example.liyuchen.ui.home;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,17 +12,8 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.liyuchen.R;
-import com.sina.weibo.sdk.WbSdk;
-import com.sina.weibo.sdk.auth.AccessTokenKeeper;
-import com.sina.weibo.sdk.auth.AuthInfo;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
-import com.sina.weibo.sdk.auth.sso.SsoHandler;
-
-import java.text.SimpleDateFormat;
 
 public class newsActivity extends Activity {
 

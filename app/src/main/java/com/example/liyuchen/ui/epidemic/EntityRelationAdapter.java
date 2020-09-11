@@ -33,15 +33,15 @@ public class EntityRelationAdapter extends RecyclerView.Adapter<EntityRelationAd
             relation=itemView.findViewById(R.id.textView_entityrelation);
             symptom=itemView.findViewById(R.id.textView_entityrelationsymptom);
             image=itemView.findViewById(R.id.image_relationsearch);
-            image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(itemView.getContext(), MainActivity.class);
-                    intent.putExtra("title",symptom.getText());
-                    intent.putExtra("return","1");
-                    v.getContext().startActivity(intent);
-                }
-            });
+//            image.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent=new Intent(itemView.getContext(), MainActivity.class);
+//                    intent.putExtra("title",symptom.getText());
+//                    intent.putExtra("return","1");
+//                    v.getContext().startActivity(intent);
+//                }
+//            });
         }
     }
 
