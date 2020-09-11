@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/imageView_scientistname"
-                android:layout_width="wrap_content"
+                android:layout_width="232dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -36,16 +36,18 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="24sp"
                     tools:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/textView_scientistname_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8sp"
                     android:layout_weight="1"
                     android:text="TextView"
                     android:textAlignment="center"
-                    android:textSize="30sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textView_scientistname_isalive"
@@ -54,7 +56,7 @@
                     android:layout_weight="1"
                     android:text="TextView"
                     android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>

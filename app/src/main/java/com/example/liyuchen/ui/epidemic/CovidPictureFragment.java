@@ -41,6 +41,7 @@ public class CovidPictureFragment extends Fragment {
     {
         if(tosearch != null && !tosearch.equals(""))
         {
+            searchView.setQuery(tosearch, true);
             result=root.findViewById(R.id.recycler_entitysearchresult);
             result.setLayoutManager(new LinearLayoutManager(root.getContext()));
             EntityQuery.Search(tosearch, list -> {

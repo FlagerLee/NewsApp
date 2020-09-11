@@ -54,5 +54,7 @@ public class ScientistActivity extends AppCompatActivity {
         view_notes=findViewById(R.id.textView_scientist_note);
         view_notes.setText(notes);
         image=findViewById(R.id.imageView_scientist_avatar);
+
+
     }
 }

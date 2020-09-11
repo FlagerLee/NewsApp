@@ -1,6 +1,19 @@
 package com.example.liyuchen.ui.epidemic;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +24,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.fastjson.TypeReference;
 import com.example.liyuchen.R;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 
 public class ScientistAdapter extends RecyclerView.Adapter<ScientistAdapter.ViewHolder> {
@@ -46,6 +62,10 @@ public class ScientistAdapter extends RecyclerView.Adapter<ScientistAdapter.View
         this.scientists=scientists;
     }
 
+    public void setScientists(List<Scientistlayout> list) {
+        scientists = list;
+    }
+
     @NonNull
     @Override
     public ScientistAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -57,8 +77,40 @@ public class ScientistAdapter extends RecyclerView.Adapter<ScientistAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ScientistAdapter.ViewHolder holder, int position) {
         Scientistlayout sc=scientists.get(position);
-        holder.name.setText(sc.name);
-        holder.isalive.setText(sc.isalive);
+        //holder.name.setText(sc.name);
+        //holder.isalive.setText(sc.isalive);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    InputStream input = (InputStream) new URL(sc.avatarURL).getContent();
+                    Drawable d = Drawable.createFromStream(input, sc.name);
+                    int width = d.getIntrinsicWidth(), height = d.getIntrinsicHeight();
+                    Bitmap.Config config = d.getOpacity() != PixelFormat.OPAQUE
+                            ? Bitmap.Config.ARGB_8888
+                            : Bitmap.Config.RGB_565;
+                    Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                    Canvas canvas = new Canvas(bitmap);
+                    d.setBounds(0, 0, width, height);
+                    d.draw(canvas);
+                    Bitmap newbmp = Bitmap.createScaledBitmap(bitmap, 450, 600, true);
+                    holder.image.setImageBitmap(newbmp);
+
+                } catch (Exception e) {
+                    String err = e.toString();
+                }
+            }
+        };
+        thread.start();
+
+        SpannableString name = new SpannableString(sc.name);
+        name.setSpan(new TypefaceSpan("default-bold"), 0, sc.name.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.name.setText(name);
+
+        SpannableString isalive = new SpannableString(sc.isalive);
+        isalive.setSpan(new ForegroundColorSpan(Color.RED), 0, isalive.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.isalive.setText(isalive);
+
         //TODO: holder.image
     }
 
