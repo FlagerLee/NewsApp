@@ -11,6 +11,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.liyuchen.R;
@@ -35,18 +36,13 @@ public class newsActivity extends Activity {
         time.setText(getIntent().getStringExtra("time"));
         content.setText(getIntent().getStringExtra("content"));
 
-        TextView share = findViewById(R.id.share);
-        String shareContent = "分享";
-        SpannableString text = new SpannableString(shareContent);
-        text.setSpan(new ClickableSpan() {
+        ImageView share = findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(@NonNull View view) {
+            public void onClick(View view) {
                 share(newsActivity.this, (String) content.getText());
             }
-        }, 0, shareContent.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        share.setText(text);
-        share.setMovementMethod(LinkMovementMethod.getInstance());
+        });
 
     }
 

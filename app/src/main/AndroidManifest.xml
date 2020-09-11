@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp">
-        <activity android:name=".ui.epidemic.ScientistActivity"></activity>
+        <activity android:name=".ui.categories.Categories_newsActivity"></activity>
+        <activity android:name=".ui.epidemic.ScientistActivity" />
         <activity android:name=".ui.epidemic.EntityActivity" />
         <activity android:name=".ui.home.SearchActivity" />
         <activity android:name=".ui.home.SelectActivity" />

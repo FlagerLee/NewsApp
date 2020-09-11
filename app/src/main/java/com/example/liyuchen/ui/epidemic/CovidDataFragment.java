@@ -223,12 +223,6 @@ public class CovidDataFragment extends Fragment {
         linechart.getAxisLeft().setGranularity(1.0f);
         linechart.getAxisRight().setGranularity(1.0f);
         linechart.zoom(1f,1f,1f,1f);
-        for(int i=0;i<100;i++)
-        {
-            confirmed_data.add(new Entry(i,i*3));
-            cured_data.add(new Entry(i,i*2));
-            dead_data.add(new Entry(i,i));
-        }
         confirmed_linedata=new LineDataSet(confirmed_data,"confirmed");
         cured_linedata=new LineDataSet(cured_data,"cured");
         dead_linedata=new LineDataSet(dead_data,"dead");

@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.liyuchen.R;
 
@@ -23,9 +25,8 @@ import java.net.URL;
 
 public class BasicInfoFragment extends Fragment {
 
-    private TextView entityname;
-    private ImageView entitypic;
-    private TextView entityintroduction;
+    private BasicInfoAdapter adapter;
+    private RecyclerView recyclerView;
 
     private String ImgURL;
     private String Introduction;
@@ -44,27 +45,27 @@ public class BasicInfoFragment extends Fragment {
 
     private void init(View root)
     {
-        entityname=root.findViewById(R.id.textview_entityname);
-        entityname.setText(EntityActivity.title);
-        entityintroduction=root.findViewById(R.id.textView_introduction);
-        entitypic=root.findViewById(R.id.imageview_entitypic);
+        adapter=new BasicInfoAdapter();
+        recyclerView=root.findViewById(R.id.recycler_entityintroduction);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        recyclerView.setAdapter(adapter);
 
-        entityintroduction.setText(this.Introduction);
+        adapter.Introduction = this.Introduction;
+
         Thread thread = new Thread() {
             @Override
             public void run() {
                 try {
                     InputStream input = (InputStream) new URL(ImgURL).getContent();
 
-                    Drawable d = Drawable.createFromStream(input, (String)entityname.getText());
+                    Drawable d = Drawable.createFromStream(input, " ");
 
-                    entitypic.setImageDrawable(d);
+                    adapter.d = d;
 
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
-                            entitypic.setImageDrawable(d);
-                            entitypic.invalidate();
+                            adapter.notifyDataSetChanged();
                         }
                     });
                 } catch (Exception e) {
@@ -73,5 +74,6 @@ public class BasicInfoFragment extends Fragment {
             }
         };
         thread.start();
+
     }
 }
