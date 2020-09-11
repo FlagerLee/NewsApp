@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_categories"
+        android:name="com.example.liyuchen.ui.categories.CategoriesFragment"
+        android:label="新闻聚类"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.liyuchen.ui.epidemic.DashboardFragment"
         android:label="@string/title_dashboard"
