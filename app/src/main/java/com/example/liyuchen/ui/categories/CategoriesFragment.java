@@ -35,7 +35,10 @@ public class CategoriesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         list=new ArrayList<>();
-        list.add("wtf");
+        list.add("聚类1");
+        list.add("聚类2");
+        list.add("聚类3");
+        list.add("聚类4");
         adapter=new CategoriesAdapter(list);
         recyclerView.setAdapter(adapter);
     }
