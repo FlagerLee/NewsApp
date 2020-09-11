@@ -35,10 +35,10 @@ public class CategoriesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         list=new ArrayList<>();
-        list.add("聚类1");
-        list.add("聚类2");
-        list.add("聚类3");
-        list.add("聚类4");
+        list.add("新冠研究");
+        list.add("新冠来源");
+        list.add("新冠传播");
+        list.add("新冠疫苗药物");
         adapter=new CategoriesAdapter(list);
         recyclerView.setAdapter(adapter);
     }

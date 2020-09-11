@@ -39,23 +39,8 @@ public class CategoriesNewsAdapter extends RecyclerView.Adapter<CategoriesNewsAd
             title=view.findViewById(R.id.newslayout_title);
             author=view.findViewById(R.id.newslayout_author);
             time=view.findViewById(R.id.newslayout_time);
-            linearLayout=view.findViewById(R.id.newslayout_all);
-            linearLayout.setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("ResourceAsColor")
-                @Override
-                public void onClick(View v) {
-                    History.setHistory(newsID);
-                    Intent intent=new Intent(v.getContext(), newsActivity.class);
-                    intent.putExtra("title",title.getText());
-                    intent.putExtra("author",author.getText());
-                    intent.putExtra("time",time.getText());
-                    intent.putExtra("content",content+"\n");
-                    title.setTextColor(R.color.black);
-                    v.getContext().startActivity(intent);
-                }
-            });
+            }
         }
-    }
 
     public CategoriesNewsAdapter(List<newslayout> news)
     {

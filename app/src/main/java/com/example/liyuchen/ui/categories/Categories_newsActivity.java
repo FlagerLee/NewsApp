@@ -37,25 +37,25 @@ public class Categories_newsActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         list=new ArrayList<>();
         try {
-            if (tag.equals("聚类1")) {
+            if (tag.equals("新冠研究")) {
                 InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/class1.json");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 JSONArray array = new JSONArray(reader.readLine());
                 for(int i = 0; i < array.length(); i ++) list.add(new newslayout("", array.getString(i), "", "", "", false));
             }
-            else if (tag.equals("聚类2")) {
+            else if (tag.equals("新冠来源")) {
                 InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/class2.json");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 JSONArray array = new JSONArray(reader.readLine());
                 for(int i = 0; i < array.length(); i ++) list.add(new newslayout("", array.getString(i), "", "", "", false));
             }
-            else if (tag.equals("聚类3")) {
+            else if (tag.equals("新冠传播")) {
                 InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/class3.json");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 JSONArray array = new JSONArray(reader.readLine());
                 for(int i = 0; i < array.length(); i ++) list.add(new newslayout("", array.getString(i), "", "", "", false));
             }
-            else if (tag.equals("聚类4")) {
+            else if (tag.equals("新冠疫苗药物")) {
                 InputStream is = this.getClass().getClassLoader().getResourceAsStream("assets/class4.json");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 JSONArray array = new JSONArray(reader.readLine());
