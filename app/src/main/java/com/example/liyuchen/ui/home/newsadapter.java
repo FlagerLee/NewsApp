@@ -85,8 +85,9 @@ public class newsadapter extends RecyclerView.Adapter<newsadapter.ViewHolder> {
         holder.title.setText(newlayout.getTitle());
         holder.author.setText(newlayout.getAuthor());
         holder.time.setText(newlayout.getTime());
-        if(newlayout.isRead())
+        if(newlayout.isRead()) {
             holder.title.setTextColor(R.color.black);
+        }
         else
             holder.title.setTextColor(R.color.yellow);
         holder.content=newlayout.getContent();

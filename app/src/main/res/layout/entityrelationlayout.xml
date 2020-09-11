@@ -10,12 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="#FFFFA31A"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +32,9 @@
                 android:layout_weight="10"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView_entityrelation"
@@ -38,7 +43,9 @@
                 android:layout_weight="10"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView_entityrelationsymptom"
@@ -47,7 +54,9 @@
                 android:layout_weight="10"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="18sp" />
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/image_relationsearch"
