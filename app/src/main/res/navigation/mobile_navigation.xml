@@ -28,4 +28,11 @@
         android:name="com.example.liyuchen.ui.notifications.HistoryFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notification_history" />
+
+    <fragment
+        android:id="@+id/navigation_aboout"
+        android:name="com.example.liyuchen.ui.aboutus.AboutUsFragment"
+        android:label="关于我们"
+        tools:layout="@layout/fragment_categories" />
+
 </navigation>

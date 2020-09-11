@@ -20,4 +20,10 @@
         android:id="@+id/navigation_notifications"
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="@string/title_notifications" />
+
+    <item
+        android:id="@+id/navigation_aboout"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="关于我们" />
+
 </menu>
