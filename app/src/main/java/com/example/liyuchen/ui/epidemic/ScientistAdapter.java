@@ -53,7 +53,6 @@ public class ScientistAdapter extends RecyclerView.Adapter<ScientistAdapter.View
                 public void onClick(View v) {
                     Intent intent=new Intent(context,ScientistActivity.class);
                     intent.putExtra("name",name.getText());
-                    intent.putExtra("test", name.getText());
                     context.startActivity(intent);
                 }
             });

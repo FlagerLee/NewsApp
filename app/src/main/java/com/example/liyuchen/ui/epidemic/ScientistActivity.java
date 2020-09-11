@@ -19,6 +19,8 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ScientistActivity extends AppCompatActivity {
 
@@ -50,11 +52,13 @@ public class ScientistActivity extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        for(String key: bundle.keySet()) {
-            String s = bundle.getString(key);
-            name = bundle.getString(key);
-        }
         name = bundle.getString("name");
+        String bundleString = bundle.toString();
+        String regex = "name=(.*)\\}";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(bundleString);
+        m.find();
+        name = m.group(1);
         view_name=findViewById(R.id.textView_scientist_name);
         view_name.setText(name);
 
@@ -70,16 +74,29 @@ public class ScientistActivity extends AppCompatActivity {
 
                         String avatar = expertInfo.getString("avatar");
 
-                        JSONObject profile = new JSONObject("profile");
+                        JSONObject profile = new JSONObject(expertInfo.getString("profile"));
 
                         String email = profile.getString("email");
                         String homepage = profile.getString("homepage");
                         String position = profile.getString("position");
-                        String affilication = profile.getString("affilication");
+                        String affiliation = profile.getString("affiliation");
                         String bio = profile.getString("bio");
-                        String education = profile.getString("education");
+                        String education = profile.getString("edu");
                         String work = profile.getString("work");
                         String notes = profile.getString("note");
+
+                        InputStream input = (InputStream) new URL(avatar).getContent();
+
+                        Drawable d = Drawable.createFromStream(input, name);
+                        int width = d.getIntrinsicWidth(), height = d.getIntrinsicHeight();
+                        Bitmap.Config config = d.getOpacity() != PixelFormat.OPAQUE
+                                ? Bitmap.Config.ARGB_8888
+                                : Bitmap.Config.RGB_565;
+                        Bitmap bitmap = Bitmap.createBitmap(width, height, config);
+                        Canvas canvas = new Canvas(bitmap);
+                        d.setBounds(0, 0, width, height);
+                        d.draw(canvas);
+                        Bitmap newbmp = Bitmap.createScaledBitmap(bitmap, 450, 600, true);
 
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
@@ -87,33 +104,18 @@ public class ScientistActivity extends AppCompatActivity {
                                 view_email.setText(email);
                                 view_homepage.setText(homepage);
                                 view_position.setText(position);
-                                view_affilication.setText(affilication);
+                                view_affilication.setText(affiliation);
                                 view_bio.setText(bio);
                                 view_education.setText(education);
                                 view_works.setText(work);
                                 view_notes.setText(notes);
 
-                                try {
-                                    InputStream input = (InputStream) new URL(avatar).getContent();
-                                    Drawable d = Drawable.createFromStream(input, name);
-                                    int width = d.getIntrinsicWidth(), height = d.getIntrinsicHeight();
-                                    Bitmap.Config config = d.getOpacity() != PixelFormat.OPAQUE
-                                            ? Bitmap.Config.ARGB_8888
-                                            : Bitmap.Config.RGB_565;
-                                    Bitmap bitmap = Bitmap.createBitmap(width, height, config);
-                                    Canvas canvas = new Canvas(bitmap);
-                                    d.setBounds(0, 0, width, height);
-                                    d.draw(canvas);
-                                    Bitmap newbmp = Bitmap.createScaledBitmap(bitmap, 450, 600, true);
-                                    image.setImageBitmap(newbmp);
-                                } catch (Exception e) {
-                                    String err = e.toString();
-                                }
+                                image.setImageBitmap(newbmp);
                             }
                         });
 
                     } catch (Exception e) {
-
+                        String err = e.toString();
                     }
                 }
 
