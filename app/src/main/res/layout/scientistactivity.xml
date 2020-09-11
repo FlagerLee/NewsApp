@@ -30,6 +30,12 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
                         android:id="@+id/textView_scientist_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -62,7 +68,7 @@
 
                 <ImageView
                     android:id="@+id/imageView_scientist_avatar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="221dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -71,6 +77,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#B5E8FF"
                 android:text="position"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -85,6 +92,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#B5E8FF"
                 android:text="affilication"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -99,6 +107,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#B5E8FF"
                 android:text="bio"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -113,6 +122,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#B5E8FF"
                 android:text="education"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -127,6 +137,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#B5E8FF"
                 android:text="work"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -138,19 +149,6 @@
                 android:text="TextView"
                 android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="notes"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textView_scientist_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 
