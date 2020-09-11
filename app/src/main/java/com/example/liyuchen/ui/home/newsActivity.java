@@ -14,8 +14,11 @@ import android.widget.TextView;
 
 import com.example.liyuchen.R;
 import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.api.TextObject;
+import com.sina.weibo.sdk.api.WeiboMultiMessage;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
+import com.sina.weibo.sdk.share.WbShareHandler;
 
 public class newsActivity extends Activity {
 
@@ -53,8 +56,14 @@ public class newsActivity extends Activity {
         share.setMovementMethod(LinkMovementMethod.getInstance());
 
 
-//        WbSdk.install(this, new AuthInfo(this, AppKey, RedirectURL, ""));
-
+//        WbSdk.install(this, new AuthInfo(this, AppKey, "all", RedirectURL));
+//        WbShareHandler handler=new WbShareHandler(this);
+//        handler.registerApp();
+//        WeiboMultiMessage message=new WeiboMultiMessage();
+//        TextObject to=new TextObject();
+//        to.text="GG HF";
+//        message.textObject=to;
+//        handler.shareMessage(message,false);
 //        mSsoHandler = new SsoHandler(newsActivity.this);
     }
 

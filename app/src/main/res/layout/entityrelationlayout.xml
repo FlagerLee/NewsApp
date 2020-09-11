@@ -18,21 +18,21 @@
 
             <TextView
                 android:id="@+id/textView_entityrelationname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/textView_entityrelation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/textView_entityrelationsymptom"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="10"
                 android:text="TextView" />
