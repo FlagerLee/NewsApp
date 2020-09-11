@@ -59,19 +59,8 @@ public class Refresh {
                     });
 
                     String title = eventDetail.getTitle();
-                    String author = eventDetail.getAuthor();
+                    String author = params.get("source");
                     if(author == null) author = "Unknown";
-                    else {
-                        List<String> authorList = JSONObject.parseObject(author, new TypeReference<List<String>>() {
-                        });
-                        author = "";
-                        for (int j = 0; j < authorList.size(); j++) {
-                            Map<String, String> name = JSONObject.parseObject(authorList.get(j), new TypeReference<Map<String, String>>() {
-                            });
-                            author = author + name.get("name");
-                            if (j != authorList.size() - 1) author = author + ", ";
-                        }
-                    }
                     String time = eventDetail.getTime();
                     boolean isRead = History.inHistory(eventDetail.getEvent_ID());
                     newslayouts.add(new newslayout(eventDetail.getEvent_ID(), title, author, time, content, isRead));
