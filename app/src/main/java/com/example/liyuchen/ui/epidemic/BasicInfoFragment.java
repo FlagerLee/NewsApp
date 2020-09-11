@@ -16,9 +16,8 @@ import com.example.liyuchen.R;
 
 public class BasicInfoFragment extends Fragment {
 
-    private TextView entityname;
-    private ImageView entitypic;
-    private TextView entityintroduction;
+    private BasicInfoAdapter adapter;
+    private RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,9 +28,9 @@ public class BasicInfoFragment extends Fragment {
 
     private void init(View root)
     {
-        entityname=root.findViewById(R.id.textview_entityname);
-        entityname.setText(EntityActivity.title);
-        entityintroduction=root.findViewById(R.id.textView_introduction);
-        entitypic=root.findViewById(R.id.imageview_entitypic);
+        adapter=new BasicInfoAdapter();
+        recyclerView=root.findViewById(R.id.recycler_entityintroduction);
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+        recyclerView.setAdapter(adapter);
     }
 }
