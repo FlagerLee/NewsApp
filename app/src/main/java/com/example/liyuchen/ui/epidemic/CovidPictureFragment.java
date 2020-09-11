@@ -11,6 +11,7 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,6 +43,7 @@ public class CovidPictureFragment extends Fragment {
         if(tosearch != null && !tosearch.equals(""))
         {
             result=root.findViewById(R.id.recycler_entitysearchresult);
+            result.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
             result.setLayoutManager(new LinearLayoutManager(root.getContext()));
             EntityQuery.Search(tosearch, list -> {
                 if(list != null && list.size() != 0) {
@@ -72,6 +74,7 @@ public class CovidPictureFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 result=root.findViewById(R.id.recycler_entitysearchresult);
+                result.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
                 result.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
                 EntityQuery.Search(query, list -> {
