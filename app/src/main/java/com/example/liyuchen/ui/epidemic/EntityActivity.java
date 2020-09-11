@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.example.liyuchen.Async.EntityInfo;
 import com.example.liyuchen.R;
 import com.example.liyuchen.ui.home.HomeViewAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -32,6 +33,7 @@ import java.util.regex.Pattern;
 
 public class EntityActivity extends AppCompatActivity {
 
+
     private TabLayout tabs;
     private List<String>titles;
     private List<Fragment>pages;
@@ -46,6 +48,45 @@ public class EntityActivity extends AppCompatActivity {
         setContentView(R.layout.entityactivity);
         title=getIntent().getStringExtra("title");
 
+        String content = getIntent().getStringExtra("content");
+        String Introduction = null;
+        String ImgURL = null;
+        List<EntityRelationLayout> relationLayouts = new ArrayList<>();
+        List<EntityInfoLayout> infoLayouts = new ArrayList<>();
+        try {
+            JSONObject entity = new JSONObject(content);
+            JSONObject abstractInfo = new JSONObject(entity.getString("abstractInfo"));
+
+            Introduction = "Wiki(en): " + abstractInfo.getString("enwiki") + "\nWiki(zh): " + abstractInfo.getString("zhwiki") + "\nBaidu: " + abstractInfo.getString("baidu");
+
+            JSONObject COVID = new JSONObject(abstractInfo.getString("COVID"));
+
+            String properties = COVID.getString("properties");
+            String regex = "\"([^\"]+)\"\\s*:\\s*\"([^\"]+)\"";
+            Pattern p = Pattern.compile(regex);
+            Matcher m = p.matcher(properties);
+
+            while (m.find()) {
+                infoLayouts.add(new EntityInfoLayout(m.group(1), m.group(2)));
+            }
+
+            JSONArray relations = new JSONArray(COVID.getString("relations"));
+            for (int i = 0; i < relations.length(); i++) {
+                String forward = null;
+                JSONObject relation = new JSONObject(relations.getString(i));
+                if (relation.getBoolean("forward")) forward = "-->";
+                else forward = "<--";
+
+                relationLayouts.add(new EntityRelationLayout(relation.getString("relation"), forward, relation.getString("label")));
+            }
+
+            ImgURL = entity.getString("img");
+
+
+        } catch (Exception e) {
+            String err = e.toString();
+        }
+
         tabs=findViewById(R.id.entity_tablayout);
         titles=new ArrayList<>();
         titles.add("基本信息");
@@ -56,11 +97,12 @@ public class EntityActivity extends AppCompatActivity {
             tabs.addTab(tabs.newTab().setText(titles.get(i)));
         }
         pages=new ArrayList<>();
-        pages.add(new BasicInfoFragment());
-        pages.add(new RelatedEntityFragment());
-        pages.add(new LabelEntityFragment());
+        pages.add(new BasicInfoFragment(Introduction, ImgURL));
+        pages.add(new RelatedEntityFragment(relationLayouts));
+        pages.add(new LabelEntityFragment(infoLayouts));
         adapter=new EntityViewAdapter(getSupportFragmentManager(),pages,titles);
         viewpager=findViewById(R.id.entity_viewpager);
+        viewpager.setOffscreenPageLimit(3);
         tabs.setupWithViewPager(viewpager);
         viewpager.setAdapter(adapter);
 

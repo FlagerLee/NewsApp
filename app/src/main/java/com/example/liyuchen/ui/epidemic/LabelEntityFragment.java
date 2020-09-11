@@ -29,13 +29,15 @@ public class LabelEntityFragment extends Fragment {
         return root;
     }
 
+    public LabelEntityFragment(List<EntityInfoLayout> list) {
+        this.list = list;
+    }
+
     private void init(View root)
     {
         info=root.findViewById(R.id.recycler_info);
         info.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         info.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        list=new ArrayList<>();
-        list.add(new EntityInfoLayout("buzhidao","jaca"));
         info_adapter=new EntityInfoAdapter(list);
         info.setAdapter(info_adapter);
     }

@@ -33,7 +33,6 @@ public class ScientistActivity extends AppCompatActivity {
     private TextView view_bio;
     private TextView view_education;
     private TextView view_works;
-    private TextView view_notes;
     private ImageView image;
 
     @Override
@@ -47,7 +46,6 @@ public class ScientistActivity extends AppCompatActivity {
         view_bio=findViewById(R.id.textView_scientist_bio);
         view_education=findViewById(R.id.textView_scientist_education);
         view_works=findViewById(R.id.textView_scientist_work);
-        view_notes=findViewById(R.id.textView_scientist_note);
         image=findViewById(R.id.imageView_scientist_avatar);
 
 
@@ -108,7 +106,6 @@ public class ScientistActivity extends AppCompatActivity {
                                 view_bio.setText(bio);
                                 view_education.setText(education);
                                 view_works.setText(work);
-                                view_notes.setText(notes);
 
                                 image.setImageBitmap(newbmp);
                             }

@@ -32,8 +32,7 @@
         <ImageView
             android:id="@+id/imageview_entitypic"
             android:layout_width="match_parent"
-            android:layout_height="475dp"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            android:layout_height="475dp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

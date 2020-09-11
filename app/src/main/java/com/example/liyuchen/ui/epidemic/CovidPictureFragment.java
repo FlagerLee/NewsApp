@@ -62,7 +62,7 @@ public class CovidPictureFragment extends Fragment {
                                 String err = e.toString();
                             }
                         }
-                        adapter = new EntityResultAdapter(l);
+                        adapter = new EntityResultAdapter(l, list);
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {

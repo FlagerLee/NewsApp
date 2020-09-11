@@ -29,13 +29,15 @@ public class RelatedEntityFragment extends Fragment {
         return root;
     }
 
+    public RelatedEntityFragment(List<EntityRelationLayout> list) {
+        this.list = list;
+    }
+
     private void init(View root)
     {
         related=root.findViewById(R.id.recycler_related);
         related.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         related.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        list=new ArrayList<>();
-        list.add(new EntityRelationLayout("this","that","人"));
         relationLayout_adapter=new EntityRelationAdapter(list);
         related.setAdapter(relationLayout_adapter);
     }

@@ -18,10 +18,12 @@ import java.util.List;
 public class EntityResultAdapter extends RecyclerView.Adapter<EntityResultAdapter.ViewHolder> {
 
     List<String> namelist;
+    List<String> contentList;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
+        private String content;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -31,15 +33,17 @@ public class EntityResultAdapter extends RecyclerView.Adapter<EntityResultAdapte
                 public void onClick(View v) {
                     Intent intent=new Intent(itemView.getContext(),EntityActivity.class);
                     intent.putExtra("title",textView.getText());
+                    intent.putExtra("content", content);
                     itemView.getContext().startActivity(intent);
                 }
             });
         }
     }
 
-    public EntityResultAdapter(List<String> list)
+    public EntityResultAdapter(List<String> list, List<String> contentList)
     {
         this.namelist=list;
+        this.contentList = contentList;
     }
 
     @NonNull
@@ -53,6 +57,7 @@ public class EntityResultAdapter extends RecyclerView.Adapter<EntityResultAdapte
     @Override
     public void onBindViewHolder(@NonNull EntityResultAdapter.ViewHolder holder, int position) {
         holder.textView.setText(namelist.get(position));
+        holder.content = contentList.get(position);
     }
 
     @Override
