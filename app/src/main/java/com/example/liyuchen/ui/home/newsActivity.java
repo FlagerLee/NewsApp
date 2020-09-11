@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -11,11 +13,17 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.liyuchen.R;
 import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.auth.AccessTokenKeeper;
 import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
+
+import java.text.SimpleDateFormat;
 
 public class newsActivity extends Activity {
 
@@ -43,24 +51,20 @@ public class newsActivity extends Activity {
         text.setSpan(new ClickableSpan() {
             @Override
             public void onClick(@NonNull View view) {
-                Weibo.getAccessToken(s -> {
-                    String ss = s;
-                });
+                share(newsActivity.this, (String) content.getText());
             }
         }, 0, shareContent.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         share.setText(text);
         share.setMovementMethod(LinkMovementMethod.getInstance());
 
-
-//        WbSdk.install(this, new AuthInfo(this, AppKey, RedirectURL, ""));
-
-//        mSsoHandler = new SsoHandler(newsActivity.this);
     }
 
-    private SsoHandler mSsoHandler = null;
+    public static void share(Context context, String extraText) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain"); intent.putExtra(Intent.EXTRA_SUBJECT, "分享"); intent.putExtra(Intent.EXTRA_TEXT, extraText);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity( Intent.createChooser(intent, "分享"));
+    }
 
-    private String AppKey = "4073260475";
-    private String AppSecret = "c23f863f31c44824afcabf764a503e77";
-    private String RedirectURL = "https://www.flagerlee.com";
 }

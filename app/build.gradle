@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 
+
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.newspart"
+        applicationId "com.example.newsapp"
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -62,6 +64,5 @@ dependencies {
     implementation  'com.scwang.smart:refresh-layout-kernel:2.0.1'
     implementation  'com.scwang.smart:refresh-header-classics:2.0.1'
 
-    //Sina
-    implementation 'com.sina.weibo.sdk:core:2.0.3:openDefaultRelease@aar'
+    compile 'com.sina.weibo.sdk:core:4.4.3:openDefaultRelease@aar'
 }
