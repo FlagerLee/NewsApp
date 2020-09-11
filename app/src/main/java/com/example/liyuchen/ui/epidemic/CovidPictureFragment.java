@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,24 +31,33 @@ public class CovidPictureFragment extends Fragment {
     private EntityResultAdapter adapter;
     public static String tosearch;
     private List<String> l=new ArrayList<>();
+    private View theroot;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_covid_picture, container, false);
+        theroot=root;
         init(root);
         return root;
     }
 
-    private void init(View root)
-    {
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
         if(tosearch != null && !tosearch.equals(""))
         {
-            result=root.findViewById(R.id.recycler_entitysearchresult);
-            result.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
-            result.setLayoutManager(new LinearLayoutManager(root.getContext()));
+            searchView.setQuery(tosearch,true);
+            result=theroot.findViewById(R.id.recycler_entitysearchresult);
+            result.addItemDecoration(new DividerItemDecoration(theroot.getContext(), DividerItemDecoration.VERTICAL));
+            result.setLayoutManager(new LinearLayoutManager(theroot.getContext()));
             EntityQuery.Search(tosearch, list -> {
                 if(list != null && list.size() != 0) {
-                    String pathPrefix = root.getContext().getFilesDir() + "Entity/";
+                    String pathPrefix = theroot.getContext().getFilesDir() + "Entity/";
 //                    List<String> l = new ArrayList<>();
                     for(String singleEntity: list) {
                         try {
@@ -67,7 +77,47 @@ public class CovidPictureFragment extends Fragment {
                 }
             });
             tosearch="";
+            l.clear();
         }
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if(tosearch != null && !tosearch.equals(""))
+        {
+            searchView.setQuery(tosearch,true);
+            result=theroot.findViewById(R.id.recycler_entitysearchresult);
+            result.addItemDecoration(new DividerItemDecoration(theroot.getContext(), DividerItemDecoration.VERTICAL));
+            result.setLayoutManager(new LinearLayoutManager(theroot.getContext()));
+            EntityQuery.Search(tosearch, list -> {
+                if(list != null && list.size() != 0) {
+                    String pathPrefix = theroot.getContext().getFilesDir() + "Entity/";
+//                    List<String> l = new ArrayList<>();
+                    for(String singleEntity: list) {
+                        try {
+                            JSONObject entityInfo = new JSONObject(singleEntity);
+                            l.add(entityInfo.getString("label"));
+                        } catch (Exception e) {
+                            String err = e.toString();
+                        }
+                    }
+                    adapter = new EntityResultAdapter(l);
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            result.setAdapter(adapter);
+                        }
+                    });
+                }
+            });
+            tosearch="";
+            l.clear();
+        }
+    }
+
+    private void init(View root)
+    {
         searchView=root.findViewById(R.id.search_entity);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -98,6 +148,7 @@ public class CovidPictureFragment extends Fragment {
                         });
                     }
                 });
+                l.clear();
                 return false;
             }
 

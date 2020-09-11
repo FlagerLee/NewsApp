@@ -35,7 +35,7 @@ public class RelatedEntityFragment extends Fragment {
         related.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         related.setLayoutManager(new LinearLayoutManager(root.getContext()));
         list=new ArrayList<>();
-        list.add(new EntityRelationLayout("this","that","what"));
+        list.add(new EntityRelationLayout("this","that","人"));
         relationLayout_adapter=new EntityRelationAdapter(list);
         related.setAdapter(relationLayout_adapter);
     }
